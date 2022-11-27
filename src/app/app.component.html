@@ -1,0 +1,58 @@
+<div id="app">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home"><img
+        src="https://upload.wikimedia.org/wikipedia/commons/2/2f/ABC-2021-LOGO.svg" alt="ABC Logo"
+        style="max-height: 35px;" /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" routerLinkActive="active">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="/home" role="button" data-bs-toggle="dropdown" aria-expanded="false" routerLink="home">
+              Home
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/services" routerLink="services">Services</a></li>
+              <li><a class="dropdown-item"  href="/faqs" routerLink="faqs">FAQ's</a></li>
+            </ul>
+          </li>
+          <li class="nav-item" *ngIf="showAdminBoard">
+            <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+          </li>
+          <li class="nav-item" *ngIf="showModeratorBoard">
+            <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
+          </li>
+          <li class="nav-item">
+            <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto d-flex" *ngIf="!isLoggedIn">
+          <li class="nav-item">
+            <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a href="/login" class="nav-link" routerLink="login">Login</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto d-flex" *ngIf="isLoggedIn">
+          <li class="nav-item">
+            <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+          </li>
+          <li class="nav-item">
+            <a href class="nav-link" (click)="logout()">LogOut</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>
