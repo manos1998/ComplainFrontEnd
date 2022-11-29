@@ -17,6 +17,12 @@ import { ServicesComponent } from './services/services.component';
 import { FaqsComponent } from './faqs/faqs.component';
 
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
+import { AddUserDetailComponent } from './component/user/add-user-detail/add-user-detail.component';
+import { AddComplainComponent } from './component/complain/add-complain/add-complain.component';
+import { ComplainDetailsComponent } from './component/complain/complain-details/complain-details.component';
+import { ComplainsListComponent } from './component/complain/complains-list/complains-list.component';
+import { BoardcomlpainComponent } from './boardcomlpain/boardcomlpain.component';
+import { UserBoardComponent } from './user-board/user-board.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +36,13 @@ import { httpInterceptorProviders } from './_helpers/http.interceptor';
     BoardUserComponent,
     ServicesComponent,
     FaqsComponent,
-    PageNotFoundComponentComponent
+    PageNotFoundComponentComponent,
+    AddUserDetailComponent,
+    AddComplainComponent,
+    ComplainDetailsComponent,
+    ComplainsListComponent,
+    BoardcomlpainComponent,
+    UserBoardComponent
   ],
   imports: [
     BrowserModule,

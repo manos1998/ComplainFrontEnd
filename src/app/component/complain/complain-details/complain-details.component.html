@@ -1,0 +1,73 @@
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentComplain.id">
+        <h4>Tutorial</h4>
+        <div>
+            <label><strong>Type:</strong></label> {{ currentComplain.type }}
+        </div>
+        <div>
+            <label><strong>Description:</strong></label>
+            {{ currentComplain.details }}
+        </div>
+        <div>
+            <label><strong>Active:</strong></label>
+            {{ currentComplain.active ? "Active" : "Resolved" }}
+        </div>
+        <div>
+            <label><strong>Status:</strong></label>
+            {{ currentComplain.status}}
+        </div>
+
+        <a class="badge badge-warning" routerLink="{{ currentComplain.id }}" [hidden]="!myVar">
+            Feedback
+        </a>
+        
+    </div>
+
+    <div *ngIf="!currentComplain">
+        <br />
+        <p>Please click on a Tutorial...</p>
+    </div>
+</div>
+
+<ng-template #editable>
+    <div *ngIf="currentComplain.id" class="edit-form">
+
+        <h4>Complain</h4>
+        <form>
+            <div class="form-group">
+                <label for="title">Status</label>
+                <input type="textarea" class="form-control" disabled id="title" [(ngModel)]="currentComplain.type" name="title" />
+            </div>
+            <div class="form-group">
+                <label for="floatingTextarea2">Feedback</label>
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+            </div>
+
+            <!-- <div class="form-group">
+                <label><strong>Status:</strong></label>
+                {{ currentComplain.status ? "Published" : "Pending" }}
+            </div> -->
+        </form>
+
+        <!-- <button class="badge badge-primary mr-2" *ngIf="currentComplain.active" (click)="updatePublished(false)">
+            UnPublish
+        </button>
+        <button *ngIf="!currentComplain.active" class="badge badge-primary mr-2" (click)="updatePublished(true)">
+            Publish
+        </button>
+
+        <button class="badge badge-danger mr-2" (click)="deleteComplain()">
+            Delete
+        </button>
+
+        <button type="submit" class="badge badge-success mb-2" (click)="updateTutorial()">
+            Update
+        </button>
+        <p>{{ message }}</p> -->
+    </div>
+
+    <div *ngIf="!currentComplain.id">
+        <br />
+        <p>Cannot access this Tutorial...</p>
+    </div>
+</ng-template>

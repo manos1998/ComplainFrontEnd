@@ -11,6 +11,11 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { FaqsComponent } from './faqs/faqs.component';
 import { ServicesComponent } from './services/services.component';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
+import { AddUserDetailComponent } from './component/user/add-user-detail/add-user-detail.component';
+import { AddComplainComponent } from './component/complain/add-complain/add-complain.component';
+import { ComplainDetailsComponent } from './component/complain/complain-details/complain-details.component';
+import { ComplainsListComponent } from './component/complain/complains-list/complains-list.component';
+import { BoardcomlpainComponent } from './boardcomlpain/boardcomlpain.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,8 +27,13 @@ const routes: Routes = [
   { path: 'admin', component: BoardAdminComponent },
   {path:'faqs', component: FaqsComponent},
   {path:'services', component: ServicesComponent},
+  { path: 'addUserDetails', component: AddUserDetailComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'complains', component: ComplainsListComponent },
+  { path: 'complains/:id', component: ComplainDetailsComponent },
+  { path: 'addComplain', component: AddComplainComponent },
+  { path: 'coomplain', component: BoardcomlpainComponent},
   {path: '**', component:PageNotFoundComponentComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({

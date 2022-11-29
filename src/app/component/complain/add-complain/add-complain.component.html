@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="submit-form">
+        <div *ngIf="!submitted">
+            <div class="form-floating mb-3">
+                Raise Complain
+            </div>
+            <div class="form-floating mb-3">
+                <select class="form-select" id="floatingSelect" required [(ngModel)]="complain.type">
+                    <option selected>Select Problem Type</option>
+                    <option value="Cannot make a call, but receive a call">Cannot make a call, but receive a call</option>
+                    <option value="Can make calls, but cannot receive calls">Can make calls, but cannot receive calls</option>
+                    <option value="Neither make nor receive calls">Neither make nor receive calls</option>
+                    <option value="Other's">Other's</option>
+                </select>
+                <label for="floatingSelect">Complain Type</label>
+            </div>
+            <div class="form-floating mb-3">
+                <textarea class="form-control" id="details" required [(ngModel)]="complain.details" name="details"
+                    placeholder="Problem Details"></textarea>
+                <label for="details">Problem Details</label>
+            </div>
+            <div class="row align-items-start">
+                <div class="form-floating mb-3 col">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="userContent.firstname"/>
+                    <label for="floatingInput">First Name</label>
+                </div>
+                <div class="form-floating mb-3 col">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="LastName" [(ngModel)]="userContent.lastname" >
+                    <label for="floatingInput">Last Name</label>
+                </div>
+            </div>
+            <div class="row align-items-start">
+                <div class="form-floating mb-3 col">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="userContent.phone"/>
+                    <label for="floatingInput">Phone Number</label>
+                </div>
+                <div class="form-floating mb-3 col">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Pincode" [(ngModel)]="userContent.pincode">
+                    <label for="floatingInput">Pincode</label>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="Address" [(ngModel)]="userContent.address">
+                <label for="floatingInput">Address</label>
+            </div>
+            <div class="form-floating mb-3">
+                <button (click)="saveComplain()" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+
+        <div *ngIf="submitted">
+            <h4>Tutorial was submitted successfully!</h4>
+            <button class="btn btn-success" (click)="newComplain()">Add</button>
+        </div>
+    </div>
+</div>
