@@ -1,3 +1,4 @@
+import { Complain } from './models/complain.model';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -19,6 +20,11 @@ import { BoardcomlpainComponent } from './boardcomlpain/boardcomlpain.component'
 import { AddComplEmpComponent } from './component/mod/add-compl-emp/add-compl-emp.component';
 import { BoardEngineerComponent } from './board-engineer/board-engineer.component';
 import { AddComplFldComponent } from './component/eng/add-compl-fld/add-compl-fld.component';
+import { AllEngineerComponent } from './allUsers/all-engineer/all-engineer.component';
+import { AllUserComponent } from './allUsers/all-user/all-user.component';
+import { AllWorkerComponent } from './allUsers/all-worker/all-worker.component';
+import { UserInfoComponent } from './allUsers/user-info/user-info.component';
+import { BoardFieldworkerComponent } from './board-fieldworker/board-fieldworker.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -29,17 +35,22 @@ const routes: Routes = [
   { path: 'mod', component: BoardModeratorComponent },
   { path: 'admin', component: BoardAdminComponent },
   { path: 'eng', component: BoardEngineerComponent },
+  { path: 'fld', component: BoardFieldworkerComponent },
   {path:'faqs', component: FaqsComponent},
   {path:'services', component: ServicesComponent},
   { path: 'addUserDetails', component: AddUserDetailComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'complains', component: ComplainsListComponent },
   { path: 'complains/:id', component: ComplainDetailsComponent },
   { path: 'addComplain', component: AddComplainComponent },
   { path: 'coomplain', component: BoardcomlpainComponent},
   { path: 'mod/compUpdate/:id', component: AddComplEmpComponent},
   { path: 'eng/compUpdate/:id', component: AddComplFldComponent},
+  {path: 'allEngineer', component: AllEngineerComponent},
+  {path: 'allWorker', component: AllWorkerComponent},
+  {path: 'allUser', component: AllUserComponent},
+  {path: 'userInfo/:id', component: UserInfoComponent},
   {path: '**', component:PageNotFoundComponentComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({

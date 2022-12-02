@@ -3,7 +3,6 @@ import { User } from './../models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../_services/storage.service';
 import { UserDetailsService } from '../_services/user-details.service';
-import { FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-board-moderator',
@@ -15,15 +14,15 @@ export class BoardModeratorComponent implements OnInit {
 
   allComplains: any;
 
-  currentWorkers: any;
+  allFieldWorker: any;
 
-  checked: string = "checked";
+  currentWorkers: any;
 
   user: any;
 
   id: any;
-
   currentComplain: any;
+  checked: string = "checked";
 
   constructor(private userService: UserDetailsService, private storageService: StorageService) { }
 
@@ -62,7 +61,23 @@ export class BoardModeratorComponent implements OnInit {
         }
       }
     })
-
+    this.userService.getModAllFieldWorker().subscribe({
+      next: data => {
+        this.allFieldWorker = data;
+      },
+      error: err => {
+        if (err.error) {
+          try {
+            const res = JSON.parse(err.error);
+            this.allFieldWorker = res.message;
+          } catch {
+            this.allFieldWorker = `Error with status: ${err.status} - ${err.statusText}`;
+          }
+        } else {
+          this.allFieldWorker = `Error with status: ${err.status}`;
+        }
+      }
+    })
   }
   getUser(uid: any) {
     this.userService.getModComUserBoard(uid).subscribe({

@@ -25,6 +25,9 @@ export class UserDetailsService {
     return this.http.get(API_URL + 'user/complain', { responseType: 'text' });
   }
 
+  // <--------------------------------------------------------------------------------------------------->
+
+
   getModComBoard(): Observable<any> {
     return this.http.get(API_URL + 'mod/complains');
   }
@@ -37,6 +40,10 @@ export class UserDetailsService {
     return this.http.get(API_URL + 'mod', { responseType: 'text' });
   }
 
+  getModAllFieldWorker(): Observable<any> {
+    return this.http.get(`${API_URL + 'mod/getAllFieldWorker'}`)
+  }
+
   getEngineerBoard(): Observable<any> {
     return this.http.get(API_URL + 'eng', { responseType: 'text' });
   }
@@ -44,6 +51,14 @@ export class UserDetailsService {
   getModComplainById(idC: number): Observable<any> {
     return this.http.get<Complain>(`${API_URL + 'mod/compUpdate'}/${idC}`);
   }
+
+  getModUserInfoById(uId: number): Observable<any> {
+    return this.http.get<Complain>(`${API_URL + 'mod/user/'}${uId}`);
+  }
+
+  // getModUserInfoById(uId: number): Observable<any> {
+  //   return this.http.get<Complain>(`${API_URL + 'mod/user/'}/${uId}`);
+  // }
 
   updateModComplainById(idE: number, idC: number): Observable<any> {
     return this.http.put(`${API_URL + 'mod/compUpdate'}/${idE}`,idC);
@@ -61,11 +76,19 @@ export class UserDetailsService {
     return this.http.get(`${API_URL + 'mod/getAllEngineer'}`)
   }
 
+  getAllFieldWorker(): Observable<any>{
+    return this.http.get(`${API_URL + 'mod/getAllFieldWorker'}`)
+  }
+
+  getAllUsers(): Observable<any>{
+    return this.http.get(`${API_URL + 'mod/getAllUsers'}`)
+  }
+
   getEngComBoard(idE: number): Observable<any> {
     return this.http.get(`${API_URL + 'eng/'}${idE}/getComplain`);
   }
 
-  getAllFieldWorker(): Observable<any>{
+  getEngAllFieldWorker(): Observable<any>{
     return this.http.get(`${API_URL + 'eng/getAllFieldWorker'}`)
   }
 
@@ -79,6 +102,15 @@ export class UserDetailsService {
 
   updateEngComplainById(idE: number, idC: number): Observable<any> {
     return this.http.put(`${API_URL + 'eng/compUpdate'}/${idE}`,idC);
+  }
+// -------------------------------------------------------------------------------------------------
+
+  getFldComBoard(idE: number): Observable<any> {
+    return this.http.get(`${API_URL + 'fld/'}${idE}/getComplain`);
+  }
+
+  getFldComUserBoard(id: any): Observable<any> {
+    return this.http.get(`${API_URL + 'fld/user'}/${id}`);
   }
 
 }

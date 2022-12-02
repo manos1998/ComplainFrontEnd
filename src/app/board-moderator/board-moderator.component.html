@@ -5,23 +5,8 @@
   </li>
 </ul> -->
 <div class="p-3">
-  <ul class="nav nav-tabs" style="width: 100%;" id="myTab" role="tablist">
-    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
-      aria-controls="home" aria-selected="true">Complain</button>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
-        aria-controls="profile" aria-selected="false">Engineer</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"
-        aria-controls="contact" aria-selected="false">Field Work</button>
-    </li>
-  </ul>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <div class="m-3">
-        <h4>Total 578 Complain</h4>
-      </div>
       <div class="m-1 p-2 border border-info border-light rounded">
         <div class="clearfix">
           <div class="d-flex float-start">
@@ -70,10 +55,8 @@
 
           <table id="infoTable" class="table caption-top table-hover">
             <caption style="text-align: center;">
-              <label for="website">Website:</label>
-              <h5>List of Complains</h5>
+                <h4>Total 578 Complain</h4>
             </caption>
-
             <thead>
               <tr>
                 <td scope="row">
@@ -134,7 +117,7 @@
                         <div class="flex-shrink-0">
                           <img src="https://tse3.mm.bing.net/th?id=OIP.2i5UaEHaQM3PYAYXQyM1AAAAAA&pid=Api&P=0" alt="..."
                             height="50px" class="rounded-circle" type="button"
-                            data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="updateEmployee(workers)">
+                            data-bs-toggle="modal" data-bs-target="#exampleModal" [routerLink]="['../userInfo/',workers.id]">
                         </div>
                         <div class="flex-grow-1 ms-1">
                           <div class="ms-2 me-auto">
@@ -154,8 +137,6 @@
             </tbody>
           </table>
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
       </div>
     </div>
   </div>

@@ -24,22 +24,31 @@
             <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
           </li>
           <li class="nav-item" *ngIf="showModeratorBoard">
-            <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
+            <a href="/mod" class="nav-link" routerLink="/mod">Complains</a>
+          </li>
+          <li class="nav-item" *ngIf="showModeratorBoard">
+            <a href="/allEngineer" class="nav-link" routerLink="/allEngineer">Engineers</a>
+          </li>
+          <li class="nav-item" *ngIf="showModeratorBoard">
+            <a href="/allWorker" class="nav-link" routerLink="/allWorker">FieldWorkers</a>
+          </li>
+          <li class="nav-item" *ngIf="showModeratorBoard">
+            <a href="/allUser" class="nav-link" routerLink="/allUser">Users</a>
           </li>
           <li class="nav-item" *ngIf="showEngineerBoard">
-            <a href="/eng" class="nav-link" routerLink="eng">Engineer Board</a>
+            <a class="nav-link"  routerLinkActive="active" ariaCurrentWhenActive="page" routerLink="/eng">Engineer Board</a>
           </li>
           <li class="nav-item" *ngIf="showFieldWorkerBoard">
-            <a href="/fld" class="nav-link" routerLink="fld">FieldWorkerBoard Board</a>
+            <a href="/fld" class="nav-link" routerLink="/fld">FieldWorkerBoard Board</a>
           </li>
           <li class="nav-item" *ngIf="showUserBoard">
-            <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+            <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="/user">User</a>
           </li>
           <li class="nav-item" *ngIf="showUserBoard">
-            <a href="/complains" class="nav-link" *ngIf="isLoggedIn" routerLink="complains">Complains</a>
+            <a href="/complains" class="nav-link" *ngIf="isLoggedIn" routerLink="/complains">Complains</a>
           </li>
           <li class="nav-item" *ngIf="showUserBoard">
-            <a href="/addComplain" class="nav-link" *ngIf="isLoggedIn" routerLink="addComplain">Add Complain</a>
+            <a href="/addComplain" class="nav-link" *ngIf="isLoggedIn" routerLink="/addComplain">Add Complain</a>
           </li>
         </ul>
 

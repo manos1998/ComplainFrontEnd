@@ -25,6 +25,11 @@ import { AddComplEmpComponent } from './component/mod/add-compl-emp/add-compl-em
 import { AddComplFldComponent } from './component/eng/add-compl-fld/add-compl-fld.component';
 import { BoardEngineerComponent } from './board-engineer/board-engineer.component';
 import { UserBoardComponent } from './user-board/user-board.component';
+import { AllEngineerComponent } from './allUsers/all-engineer/all-engineer.component';
+import { AllWorkerComponent } from './allUsers/all-worker/all-worker.component';
+import { AllUserComponent } from './allUsers/all-user/all-user.component';
+import { UserInfoComponent } from './allUsers/user-info/user-info.component';
+import { BoardFieldworkerComponent } from './board-fieldworker/board-fieldworker.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +52,12 @@ import { UserBoardComponent } from './user-board/user-board.component';
     UserBoardComponent,
     AddComplEmpComponent,
     AddComplFldComponent,
-    BoardEngineerComponent
+    BoardEngineerComponent,
+    AllEngineerComponent,
+    AllWorkerComponent,
+    AllUserComponent,
+    UserInfoComponent,
+    BoardFieldworkerComponent,
   ],
   imports: [
     BrowserModule,

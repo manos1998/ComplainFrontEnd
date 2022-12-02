@@ -24,11 +24,11 @@ export class AddComplFldComponent implements OnInit {
     private router: Router,private userService: UserDetailsService) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((param) => {
+    this.route.paramMap.subscribe((param: any) => {
       var id = Number(param.get('id'));
       this.getById(id);
     });
-    this.userService.getAllFieldWorker().subscribe({
+    this.userService.getEngAllFieldWorker().subscribe({
       next: data => {
         this.allEngineer = data;
       },

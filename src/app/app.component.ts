@@ -17,6 +17,7 @@ export class AppComponent {
   showEngineerBoard = false;
   showFieldWorkerBoard = false;
   showUserBoard = false;
+  showAllEngineer = false;
   username?: string;
 
   eventBusSub?: Subscription;
