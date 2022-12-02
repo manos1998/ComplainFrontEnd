@@ -1,0 +1,42 @@
+<table id="infoTable" class="table caption-top table-hover">
+    <caption style="text-align: center;">
+        <!-- <label for="website">Website:</label> -->
+        <h5>List of FieldWorker</h5>
+    </caption>
+
+    <thead>
+        <tr>
+            <th scope="col">U Id.</th>
+            <th scope="col">Pincode</th>
+            <th scope="col">Email</th>
+            <th scope="col">Firstname</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">Edit</th>
+        </tr>
+    </thead>
+    <!-- ````````````````````````````````````````````````````````````````````````````````````````````````````````````` -->
+    <tbody class="table-group-divider" *ngFor="let engineer of allEngineer; let i = index">
+        <tr>
+            <td scope="row" style="font-weight: bold">{{engineer.id}}
+            </td>
+            <td>{{engineer.pincode}}
+            </td>
+            <td>{{engineer.email}}
+            </td>
+            <td>{{engineer.firstname}}
+            </td>
+            <td>{{engineer.lastname}}
+            </td>
+            <td>{{engineer.phone}}
+            </td>
+            <td>{{engineer.address}}
+            </td>
+            <td>
+                <!-- <a class="btn btn-primary" [routerLink]="['compUpdate/', complain.idC]">Edit</a> -->
+                <!-- <button type="button" class="btn btn-outline-success" (click)="updateDetails(complain, complain.idC)" >Submit</button> -->
+            </td>
+        </tr>
+    </tbody>
+</table>
