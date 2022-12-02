@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -22,6 +21,9 @@ import { AddComplainComponent } from './component/complain/add-complain/add-comp
 import { ComplainDetailsComponent } from './component/complain/complain-details/complain-details.component';
 import { ComplainsListComponent } from './component/complain/complains-list/complains-list.component';
 import { BoardcomlpainComponent } from './boardcomlpain/boardcomlpain.component';
+import { AddComplEmpComponent } from './component/mod/add-compl-emp/add-compl-emp.component';
+import { AddComplFldComponent } from './component/eng/add-compl-fld/add-compl-fld.component';
+import { BoardEngineerComponent } from './board-engineer/board-engineer.component';
 import { UserBoardComponent } from './user-board/user-board.component';
 
 @NgModule({
@@ -42,7 +44,10 @@ import { UserBoardComponent } from './user-board/user-board.component';
     ComplainDetailsComponent,
     ComplainsListComponent,
     BoardcomlpainComponent,
-    UserBoardComponent
+    UserBoardComponent,
+    AddComplEmpComponent,
+    AddComplFldComponent,
+    BoardEngineerComponent
   ],
   imports: [
     BrowserModule,

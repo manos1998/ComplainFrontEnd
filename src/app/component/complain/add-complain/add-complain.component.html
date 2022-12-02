@@ -15,32 +15,32 @@
                 <label for="floatingSelect">Complain Type</label>
             </div>
             <div class="form-floating mb-3">
-                <textarea class="form-control" id="details" required [(ngModel)]="complain.details" name="details"
+                <textarea type="text" class="form-control" id="details" required [(ngModel)]="complain.details" name="details"
                     placeholder="Problem Details"></textarea>
                 <label for="details">Problem Details</label>
             </div>
             <div class="row align-items-start">
                 <div class="form-floating mb-3 col">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="userContent.firstname"/>
+                    <input type="text" class="form-control" id="floatingInput" placeholder="firstname" [(ngModel)]="userContent.firstname"/>
                     <label for="floatingInput">First Name</label>
                 </div>
                 <div class="form-floating mb-3 col">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="LastName" [(ngModel)]="userContent.lastname" >
+                    <input type="text" class="form-control" id="floatingInput" placeholder="lastName" [(ngModel)]="userContent.lastname" >
                     <label for="floatingInput">Last Name</label>
                 </div>
             </div>
             <div class="row align-items-start">
                 <div class="form-floating mb-3 col">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="userContent.phone"/>
+                    <input type="text" class="form-control" id="floatingInput" placeholder="phone" [(ngModel)]="userContent.phone"/>
                     <label for="floatingInput">Phone Number</label>
                 </div>
                 <div class="form-floating mb-3 col">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="Pincode" [(ngModel)]="userContent.pincode">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="pincode" [(ngModel)]="userContent.pincode">
                     <label for="floatingInput">Pincode</label>
                 </div>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="Address" [(ngModel)]="userContent.address">
+                <input type="text" class="form-control" id="floatingInput" placeholder="address" [(ngModel)]="userContent.address">
                 <label for="floatingInput">Address</label>
             </div>
             <div class="form-floating mb-3">

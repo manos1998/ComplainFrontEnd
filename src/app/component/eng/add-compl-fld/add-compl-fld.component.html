@@ -1,0 +1,99 @@
+<div class="container">
+    <legend>Edit Item</legend>
+    <form>
+      <div class="mb-3">
+        <label for="txtName" class="form-label">Complain Id</label> {{complainForm.idC}} <br>
+        <label for="txtName" class="form-label">Complain Type</label> {{complainForm.type}} <br>
+        <label for="txtName" class="form-label">Complain Status</label> {{complainForm.status}} <br>
+        <button type="button" (click)="update()" class="btn btn-primary">Update</button>
+      </div>
+
+      <div class="p-3">
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="m-1 p-2 border border-info border-light rounded">
+              <div class="clearfix">
+                <div class="d-flex float-start">
+                  <div class="me-2">
+                    <button type="button" class="btn btn-outline-danger"><i class="bi bi-file-pdf-fill"></i> Export
+                      PDF</button>
+                  </div>
+                  <form class="d-flex float-start" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search By Username" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                </div>
+                <div class="float-end">
+                  <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Show 10 of 55
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Show 5 of 55</a></li>
+                      <li><a class="dropdown-item" href="#">Show 15 of 55</a></li>
+                      <li><a class="dropdown-item" href="#">Show 20 of 55</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- ```````````````````````````````````````````````````````````````````````````````````````````````` -->
+      
+              <div class="m-1 p-2 border border-info border-light rounded">
+                <div class="clearfix">
+                  <div class="float-end">
+                  </div>
+                </div>
+      
+                <table id="infoTable" class="table caption-top table-hover">
+                  <caption style="text-align: center;">
+                    <!-- <label for="website">Website:</label> -->
+                    <h5>List of Field Worker</h5>
+                  </caption>
+      
+                  <thead>
+                    <tr>
+                      <td scope="row">
+                        <input class="form-check-input" type="checkbox" id="flexCheckIndeterminate" >
+                      </td>
+                      <th scope="col">U Id.</th>
+                      <th scope="col">Pincode</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Firstname</th>
+                      <th scope="col">Lastname</th>
+                      <th scope="col">Phone</th>
+                      <th scope="col">Address</th>
+                    </tr>
+                  </thead>
+                  <!-- ````````````````````````````````````````````````````````````````````````````````````````````````````````````` -->
+                  <tbody class="table-group-divider" *ngFor="let engineer of allEngineer; let i = index">
+                    <tr>
+                      <td scope="row">
+                        <input class="form-check-input" type="checkbox" value="false" id="flexCheckChecked" (click)="setEmployee(engineer.id)">
+                      </td>
+                      <td scope="row" style="font-weight: bold">{{engineer.id}}
+                      </td>
+                      <td>{{engineer.pincode}}
+                      </td>
+                      <td>{{engineer.email}}
+                      </td>
+                      <td>{{engineer.firstname}}
+                      </td>
+                      <td>{{engineer.lastname}}
+                      </td>
+                      <td>{{engineer.address}}
+                      </td>
+                      <td>
+                        <!-- <a class="btn btn-primary" [routerLink]="['compUpdate/', complain.idC]">Edit</a> -->
+                        <!-- <button type="button" class="btn btn-outline-success" (click)="updateDetails(complain, complain.idC)" >Submit</button> -->
+                      </td>
+                    </tr>
+                  </tbody>
+                  </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+</div>

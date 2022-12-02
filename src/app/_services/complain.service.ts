@@ -10,19 +10,27 @@ const API_URL = 'http://localhost:8080/api/test/';
 })
 export class ComplainService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<Complain[]> {
     return this.http.get<Complain[]>(API_URL + 'complains');
   }
 
+  //Get Complain By User Login
   get(id: any): Observable<Complain> {
     return this.http.get<Complain>(`${API_URL + 'complains'}/${id}`);
   }
 
-  create(id: any,data: any): Observable<any> {
+  //Get All Complain By User
+  getAllComplainsByUserId(id: any): Observable<Complain> {
+    return this.http.get<Complain>(`${API_URL + 'user'}/${id}/complains`);
+  }
+
+  //Create Complain By User
+  createComplainByUser(id: any, data: any): Observable<any> {
     return this.http.post(`${API_URL + 'user'}/${id}/complains`, data);
   }
+
 
   update(id: any, data: any): Observable<any> {
     return this.http.put(`${API_URL + 'complains'}/${id}`, data);

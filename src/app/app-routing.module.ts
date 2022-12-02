@@ -16,6 +16,9 @@ import { AddComplainComponent } from './component/complain/add-complain/add-comp
 import { ComplainDetailsComponent } from './component/complain/complain-details/complain-details.component';
 import { ComplainsListComponent } from './component/complain/complains-list/complains-list.component';
 import { BoardcomlpainComponent } from './boardcomlpain/boardcomlpain.component';
+import { AddComplEmpComponent } from './component/mod/add-compl-emp/add-compl-emp.component';
+import { BoardEngineerComponent } from './board-engineer/board-engineer.component';
+import { AddComplFldComponent } from './component/eng/add-compl-fld/add-compl-fld.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,6 +28,7 @@ const routes: Routes = [
   { path: 'user', component: BoardUserComponent },
   { path: 'mod', component: BoardModeratorComponent },
   { path: 'admin', component: BoardAdminComponent },
+  { path: 'eng', component: BoardEngineerComponent },
   {path:'faqs', component: FaqsComponent},
   {path:'services', component: ServicesComponent},
   { path: 'addUserDetails', component: AddUserDetailComponent },
@@ -33,6 +37,8 @@ const routes: Routes = [
   { path: 'complains/:id', component: ComplainDetailsComponent },
   { path: 'addComplain', component: AddComplainComponent },
   { path: 'coomplain', component: BoardcomlpainComponent},
+  { path: 'mod/compUpdate/:id', component: AddComplEmpComponent},
+  { path: 'eng/compUpdate/:id', component: AddComplFldComponent},
   {path: '**', component:PageNotFoundComponentComponent },
 ];
 

@@ -1,0 +1,91 @@
+<table id="infoTable" class="table caption-top table-hover">
+  <caption style="text-align: center;">
+    <label for="website">Website:</label>
+    <h5>List of Complains</h5>
+  </caption>
+
+  <thead>
+    <tr>
+      <td scope="row">
+        <input class="form-check-input" type="checkbox" id="flexCheckIndeterminate">
+      </td>
+      <th scope="col">C Id.</th>
+      <th scope="col">U Id.</th>
+      <th scope="col">Pincode</th>
+      <th scope="col">Status</th>
+      <th scope="col">Type</th>
+      <th scope="col">Details</th>
+      <th scope="col">Feedback</th>
+      <th scope="col">Assign-To</th>
+    </tr>
+  </thead>
+
+  <!-- ````````````````````````````````````````````````````````````````````````````````````````````````````````````` -->
+
+  <tbody class="table-group-divider" *ngFor="let complain of allComplains; let i = index">
+    <tr>
+      <td scope="row">
+        <!-- <input type="checkbox" [value]="complain.idC" (change)="onCheckboxChange($event)" /> -->
+        <input class="form-check-input" type="checkbox" value="false" id="flexCheckChecked" *ngIf="complain.active">
+      </td>
+      <td scope="row" style="font-weight: bold">{{complain.idC}}
+      </td>
+      <td>
+        <button (click)="getUser(complain.uId)">
+          {{complain.uId}}
+        </button>
+      </td>
+      <td>{{complain.pincode}}
+      </td>
+      <td>
+        <select class="form-select rounded-pill" aria-label="Default select example" [id]="complain.status"
+          [name]="complain.status" style="max-width: 126px;">
+          <option selected>{{complain.status}}</option>
+          <option value="WIP">WIP</option>
+          <option value="ELEVATED">ELEVATED</option>
+          <option value="RESOLVED">RESOLVED</option>
+        </select>
+      </td>
+      <td> <small> {{complain.type}} <br>
+          {{complain.createdOn}}</small>
+      </td>
+      <td> <small><small>
+            {{complain.details}}
+            <!-- of Table1 with Table2 to check if anything <br> matches based on the condition provided in  -->
+          </small></small>
+      </td>
+      <td>{{complain.pincode}}
+      </td>
+      <!-- <td>
+          <button type="button" class="btn btn-outline-success" (click)="updateSubmitTest(complain)">Add Employee</button>
+        </td> -->
+      <td>
+        <div *ngIf="complain.workers.length > 1; else elseWorker">
+          <div *ngFor="let workers of complain.workers.slice(1).reverse(); let i = index">
+            <div class="d-flex">
+              <div class="flex-shrink-0">
+                <img src="https://tse3.mm.bing.net/th?id=OIP.2i5UaEHaQM3PYAYXQyM1AAAAAA&pid=Api&P=0" alt="..."
+                  height="50px" class="rounded-circle" type="button" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal" (click)="updateEmployee(workers)">
+              </div>
+              <div class="flex-grow-1 ms-1">
+                <div class="ms-2 me-auto">
+                  <small>
+                    <div class="fw-bold" *ngFor="let roles of workers.roles; let i = index">
+                      {{roles.name.slice(5)}}
+                    </div>
+                    <i class="bi bi-clock"></i> ID-{{workers.id}}
+                  </small>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <ng-template #elseWorker>
+          <a class="btn btn-primary" [routerLink]="['compUpdate/', complain.idC]">Edit</a>
+        </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>

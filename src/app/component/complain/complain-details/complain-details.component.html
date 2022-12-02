@@ -1,6 +1,7 @@
 <div *ngIf="viewMode; else editable">
-    <div *ngIf="currentComplain.id">
-        <h4>Tutorial</h4>
+    <div *ngIf="currentComplain.idC">
+        <h4>Complain Detail</h4>
+        {{currentComplain.idC}}
         <div>
             <label><strong>Type:</strong></label> {{ currentComplain.type }}
         </div>
@@ -10,14 +11,9 @@
         </div>
         <div>
             <label><strong>Active:</strong></label>
-            {{ currentComplain.active ? "Active" : "Resolved" }}
+            {{ currentComplain.active ? "Active" : "Done"}} - {{ currentComplain.status}}
         </div>
-        <div>
-            <label><strong>Status:</strong></label>
-            {{ currentComplain.status}}
-        </div>
-
-        <a class="badge badge-warning" routerLink="{{ currentComplain.id }}" [hidden]="!myVar">
+        <a class="badge badge-warning" routerLink="{{ currentComplain.idC }}" [hidden]="!currentComplain.active">
             Feedback
         </a>
         
@@ -30,7 +26,7 @@
 </div>
 
 <ng-template #editable>
-    <div *ngIf="currentComplain.id" class="edit-form">
+    <div *ngIf="currentComplain.idC" class="edit-form">
 
         <h4>Complain</h4>
         <form>
@@ -66,7 +62,7 @@
         <p>{{ message }}</p> -->
     </div>
 
-    <div *ngIf="!currentComplain.id">
+    <div *ngIf="!currentComplain.idC">
         <br />
         <p>Cannot access this Tutorial...</p>
     </div>

@@ -1,12 +1,13 @@
-<div class="container">
+<div>
     <div class="list row">
         <div class="col-md-6">
-            <h4>Complain List <a href="">Add Complain</a></h4> 
+            <h4>Complain List</h4>
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let complain of complains; let i = index"
-                    [class.active]="i == currentIndex" (click)="setActiveTutorial(complain, i)">
-                    {{ complain.type }} + 
-                    {{ complain.details }}
+                    [class.active]="i == currentIndex" (click)="setActiveComplain(complain, i)">
+                    {{ complain.type }} +
+                    {{ complain.details }} + 
+                    {{complain.idC}}
                 </li>
             </ul>
         </div>

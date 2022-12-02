@@ -20,7 +20,6 @@ export class AddComplainComponent implements OnInit {
   pipe = new DatePipe('en-US');
 
   complain: Complain = {
-    c_id: '',
     type: '',
     details: '',
     active: true,
@@ -35,7 +34,7 @@ export class AddComplainComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.storageService.getUser().id;
 
-    this.userService.get(this.storageService.getUser().id).subscribe({
+    this.userService.getUser(this.storageService.getUser().id).subscribe({
       next: data => {
         this.userContent = data;
       },
@@ -62,7 +61,7 @@ export class AddComplainComponent implements OnInit {
       status: this.complain.status,
     };
     console.log(data);
-    this.complainService.create(this.storageService.getUser().id,data)
+    this.complainService.createComplainByUser(this.storageService.getUser().id,data)
       .subscribe({
         next: (res) => {
           console.log(res);

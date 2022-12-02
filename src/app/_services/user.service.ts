@@ -21,4 +21,13 @@ export class UserService {
   getAdminBoard(): Observable<any> {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
+
+  getEngineerBoard(): Observable<any> {
+    return this.http.get(API_URL + 'eng', { responseType: 'text' });
+  }
+
+  getFieldWorkerBoard(): Observable<any> {
+    return this.http.get(API_URL + 'fld', { responseType: 'text' });
+  }
+
 }

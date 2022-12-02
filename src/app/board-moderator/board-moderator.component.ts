@@ -1,5 +1,9 @@
+import { Complain } from './../models/complain.model';
+import { User } from './../models/user.model';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/user.service';
+import { StorageService } from '../_services/storage.service';
+import { UserDetailsService } from '../_services/user-details.service';
+import { FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-board-moderator',
@@ -9,7 +13,19 @@ import { UserService } from '../_services/user.service';
 export class BoardModeratorComponent implements OnInit {
   content?: string;
 
-  constructor(private userService: UserService) { }
+  allComplains: any;
+
+  currentWorkers: any;
+
+  checked: string = "checked";
+
+  user: any;
+
+  id: any;
+
+  currentComplain: any;
+
+  constructor(private userService: UserDetailsService, private storageService: StorageService) { }
 
   ngOnInit(): void {
     this.userService.getModeratorBoard().subscribe({
@@ -29,5 +45,87 @@ export class BoardModeratorComponent implements OnInit {
         }
       }
     });
+    this.userService.getModComBoard().subscribe({
+      next: data => {
+        this.allComplains = data;
+      },
+      error: err => {
+        if (err.error) {
+          try {
+            const res = JSON.parse(err.error);
+            this.content = res.message;
+          } catch {
+            this.content = `Error with status: ${err.status} - ${err.statusText}`;
+          }
+        } else {
+          this.content = `Error with status: ${err.status}`;
+        }
+      }
+    })
+
   }
+  getUser(uid: any) {
+    this.userService.getModComUserBoard(uid).subscribe({
+      next: data => {
+        this.user = data;
+      },
+    error: err => {
+      if (err.error) {
+        try {
+          const res = JSON.parse(err.error);
+          this.content = res.message;
+        } catch {
+          this.content = `Error with status: ${err.status} - ${err.statusText}`;
+        }
+      } else {
+        this.content = `Error with status: ${err.status}`;
+      }
+    }
+  })
+  }
+
+  updateEmployee(workers: any) {
+    this.currentWorkers = workers;
+    console.log(this.currentWorkers);    
+  }
+
+  // onCheckboxChange(e) {
+    
+  //   if (e.target.checked) {
+  //     website.push(new FormControl(e.target.value));
+  //   } else {
+  //      const index = website.controls.findIndex(x => x.value === e.target.value);
+  //      website.removeAt(index);
+  //   }
+  // }
+    
+  // submit(){
+  //   console.log(this.form.value);
+  // }
+  
+  // updateDetails(complain: any, idC: any){
+  //   this.userService.updateModComplain(complain,idC).subscribe({
+  //     // next: data => {
+  //     //   this.user = data;
+  //     // },
+  //   error: err => {
+  //     if (err.error) {
+  //       try {
+  //         const res = JSON.parse(err.error);
+  //         this.content = res.message;
+  //       } catch {
+  //         this.content = `Error with status: ${err.status} - ${err.statusText}`;
+  //       }
+  //     } else {
+  //       this.content = `Error with status: ${err.status}`;
+  //     }
+  //   }
+  // })
+  // }
+
+  // updateSubmitTest(complain: any){
+  //   next:(complain) => {
+  //     this.router.navigate(["/fruits/home"])
+  //   },
+  // }
 }

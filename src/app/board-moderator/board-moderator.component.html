@@ -1,5 +1,162 @@
-<div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
-  </header>
+<!-- <ul class="list-group">
+  <li class="list-group-item" *ngFor="let complain of allComplains; let i = index">
+      {{ complain.type }} + 
+      {{ complain.details }}
+  </li>
+</ul> -->
+<div class="p-3">
+  <ul class="nav nav-tabs" style="width: 100%;" id="myTab" role="tablist">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
+      aria-controls="home" aria-selected="true">Complain</button>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
+        aria-controls="profile" aria-selected="false">Engineer</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"
+        aria-controls="contact" aria-selected="false">Field Work</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="m-3">
+        <h4>Total 578 Complain</h4>
+      </div>
+      <div class="m-1 p-2 border border-info border-light rounded">
+        <div class="clearfix">
+          <div class="d-flex float-start">
+            <div class="dropdown me-2">
+              <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                All Leads
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Active</a></li>
+                <li><a class="dropdown-item" href="#">Date</a></li>
+                <li><a class="dropdown-item" href="#">Pincode</a></li>
+              </ul>
+            </div>
+            <div class="me-2">
+              <button type="button" class="btn btn-outline-danger"><i class="bi bi-file-pdf-fill"></i> Export
+                PDF</button>
+            </div>
+            <form class="d-flex float-start" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search By Username" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+          <div class="float-end">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Show 10 of 55
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Show 5 of 55</a></li>
+                <li><a class="dropdown-item" href="#">Show 15 of 55</a></li>
+                <li><a class="dropdown-item" href="#">Show 20 of 55</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ```````````````````````````````````````````````````````````````````````````````````````````````` -->
+
+        <div class="m-1 p-2 border border-info border-light rounded">
+          <div class="clearfix">
+
+            <div class="float-end">
+
+            </div>
+          </div>
+
+          <table id="infoTable" class="table caption-top table-hover">
+            <caption style="text-align: center;">
+              <label for="website">Website:</label>
+              <h5>List of Complains</h5>
+            </caption>
+
+            <thead>
+              <tr>
+                <td scope="row">
+                  <input class="form-check-input" type="checkbox" id="flexCheckIndeterminate" >
+                </td>
+                <th scope="col">C Id.</th>
+                <th scope="col">U Id.</th>
+                <th scope="col">Pincode</th>
+                <th scope="col">Status</th>
+                <th scope="col">Type</th>
+                <th scope="col">Details</th>
+                <th scope="col">Feedback</th>
+                <th scope="col">Assign-To</th>
+              </tr>
+            </thead>
+
+            <!-- ````````````````````````````````````````````````````````````````````````````````````````````````````````````` -->
+
+            <tbody class="table-group-divider" *ngFor="let complain of allComplains; let i = index">
+              <tr>
+                <td scope="row">
+                  <!-- <input type="checkbox" [value]="complain.idC" (change)="onCheckboxChange($event)" /> -->
+                  <input class="form-check-input" type="checkbox" value="false" id="flexCheckChecked">
+                </td>
+                <td scope="row" style="font-weight: bold">{{complain.idC}}
+                </td>
+                <td>
+                  <button (click)="getUser(complain.uId)">{{complain.uId}}</button>
+                </td>
+                <td>{{complain.pincode}}
+                </td>
+                <td>
+                  <select class="form-select rounded-pill" aria-label="Default select example" [id]="complain.status" [name]="complain.status"
+                    style="max-width: 126px;">
+                    <option selected>{{complain.status}}</option>
+                    <option value="WIP">WIP</option>
+                    <option value="ELEVATED">ELEVATED</option>
+                    <option value="RESOLVED">RESOLVED</option>
+                  </select>
+                </td>
+                <td> <small> {{complain.type}} <br>
+                    {{complain.createdOn}}</small>
+                </td>
+                <td> <small><small>
+                      {{complain.details}}
+                      <!-- of Table1 with Table2 to check if anything <br> matches based on the condition provided in  -->
+                    </small></small>
+                </td>
+                <td>{{complain.pincode}}
+                </td>
+                <!-- <td>
+                  <button type="button" class="btn btn-outline-success" (click)="updateSubmitTest(complain)">Add Employee</button>
+                </td> -->
+                <td>
+                  <div *ngIf="complain.workers.length > 0; else elseWorker">
+                    <div *ngFor="let workers of complain.workers; let i = index">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0">
+                          <img src="https://tse3.mm.bing.net/th?id=OIP.2i5UaEHaQM3PYAYXQyM1AAAAAA&pid=Api&P=0" alt="..."
+                            height="50px" class="rounded-circle" type="button"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="updateEmployee(workers)">
+                        </div>
+                        <div class="flex-grow-1 ms-1">
+                          <div class="ms-2 me-auto">
+                            <div class="fw-bold">Engineer </div>
+                            <i class="bi bi-clock"></i> ID-{{workers.id}}
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  <ng-template #elseWorker>
+                    <a class="btn btn-primary" [routerLink]="['compUpdate/', complain.idC]">Edit</a>
+                  </ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -13,11 +13,13 @@ export class ComplainDetailsComponent implements OnInit {
   @Input() viewMode = false;
 
   @Input() currentComplain: Complain = {
+    idC: '',
     type: '',
     details: '',
     active: true,
     status: '',
-    feedback: ''
+    feedback: '',
+    createdOn: '',
   }
 
   myVar: boolean = true;
@@ -46,5 +48,4 @@ export class ComplainDetailsComponent implements OnInit {
           error: (e) => console.error(e)
         });
     }
-  
-}
+  }

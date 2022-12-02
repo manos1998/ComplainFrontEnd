@@ -14,6 +14,9 @@ export class AppComponent {
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
+  showEngineerBoard = false;
+  showFieldWorkerBoard = false;
+  showUserBoard = false;
   username?: string;
 
   eventBusSub?: Subscription;
@@ -32,8 +35,10 @@ export class AppComponent {
       this.roles = user.roles;
 
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-
+      this.showModeratorBoard = this.roles.includes('ROLE_MANAGER');
+      this.showEngineerBoard = this.roles.includes('ROLE_ENGINEER');
+      this.showFieldWorkerBoard = this.roles.includes('ROLE_FIELDWORKER');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
       this.username = user.username;
     }
 

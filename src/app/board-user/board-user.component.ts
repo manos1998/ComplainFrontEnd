@@ -34,7 +34,7 @@ export class BoardUserComponent implements OnInit {
         }
       }
     });
-    this.userService.get(this.storageService.getUser().id).subscribe({
+    this.userService.getUser(this.storageService.getUser().id).subscribe({
       next: data => {
         this.userContent = data;
       },

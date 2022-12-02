@@ -9,12 +9,11 @@ import { Complain } from 'src/app/models/complain.model';
   styleUrls: ['./complains-list.component.css']
 })
 export class ComplainsListComponent implements OnInit {
-  complains?: Complain[];
+  complains?: any;
   currentComplain: Complain = {};
   currentIndex = -1;
   type = '';
   currentUser: any;
-
   constructor(private complainService: ComplainService, private storageService:StorageService) { }
 
   ngOnInit(): void {
@@ -22,7 +21,7 @@ export class ComplainsListComponent implements OnInit {
     this.currentUser = this.storageService.getUser();
   }
   retriveComplains() {
-    this.complainService.getAll()
+    this.complainService.getAllComplainsByUserId(this.storageService.getUser().id)
     .subscribe({
       next: (data) => {
         this.complains = data;
@@ -38,7 +37,7 @@ export class ComplainsListComponent implements OnInit {
     this.currentIndex = -1;
   }
 
-  setActiveTutorial(complain: Complain, index: number): void {
+  setActiveComplain(complain: Complain, index: number): void {
     this.currentComplain = complain;
     this.currentIndex = index;
   }
