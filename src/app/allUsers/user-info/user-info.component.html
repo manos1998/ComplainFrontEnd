@@ -13,28 +13,144 @@
                 <div class="text-center mt-3">
                     <span class="bg-secondary p-1 px-4 rounded text-white">{{complainForm.username}}</span>
                     <h5 class="mt-2 mb-0" > {{complainForm.firstname}} - {{complainForm.lastname}}</h5>
-                    <span> Roles {{complainForm.roles}}</span>
+                    <span  *ngFor="let role of usersRole; let i = index"> {{role.name}}</span>
                     <div class="px-4 mt-1">
                         <p class="fonts"> 
                             Phone : {{complainForm.phone}}<br>
                             Email : {{complainForm.email}}</p>
                     </div>
-                    
                      <div class="social-list">
                         Address : {{complainForm.address}} - Pincode - {{complainForm.pincode}}
                      </div>
-                    
                     <div class="buttons">
-                        <button class="btn btn-outline-primary px-4">Update</button>
-                    </div>                    
+                        <button class="btn btn-outline-primary px-4" (click)="viewModeChange()">Update</button>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-5">
-            Apple ------------------------------------------------------------------------------------------------------------------
-            Apple ------------------------------------------------------------------------------------------------------------------
+            <div *ngIf="viewMode">
+                <div *ngIf="complainForm.id">
+                    <h4>Update User Info</h4>
+                    <form [formGroup]="form" (ngSubmit)="submit()">
+                        <div class="mb-3">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-2">
+                                    <label for="firstname">FirstName</label>
+                                </div>
+                                <div class="col-auto">
+                                <input 
+                                    formControlName="firstname"
+                                    id="firstname" 
+                                    type="text" 
+                                    class="form-control">
+                                </div>
+                                <div class="col-auto" *ngIf="f.firstname.touched && f.firstname.invalid">
+                                    <small> <span *ngIf="f.firstname.hasError('required')">Firstname is required.</span>
+                                    <span *ngIf="f.firstname.hasError('minlength')">Firstname should be 3 character.</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-2">
+                                    <label for="lastname">LastName</label>
+                                </div>
+                                <div class="col-auto">
+                                <input 
+                                    formControlName="lastname"
+                                    id="lastname" 
+                                    type="text" 
+                                    class="form-control">
+                                </div>
+                                <div class="col-auto" *ngIf="f.lastname.touched && f.lastname.invalid">
+                                    <small> <span *ngIf="f.lastname.hasError('required')">Lastname is required.</span>
+                                    <span *ngIf="f.lastname.hasError('minlength')">Lastname should be 3 character.</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-2">
+                                    <label for="phone">Phone</label>
+                                </div>
+                                <div class="col-auto">
+                                <input 
+                                    formControlName="phone"
+                                    id="phone"
+                                    type="text"
+                                    class="form-control"
+                                    maxlength="10">
+                                </div>
+                                <div class="col-auto" *ngIf="f.phone.touched && f.phone.invalid">
+                                    <small> <span *ngIf="f.phone.hasError('required')">Phone is required.</span>
+                                    <span *ngIf="f.phone.hasError('pattern')">Mobile Number should be 10 Digit Only.</span></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-2">
+                                    <label for="pincode">Pincode</label>
+                                </div>
+                                <div class="col-auto">
+                                <input 
+                                    formControlName="pincode"
+                                    id="pincode" 
+                                    type="text" 
+                                    class="form-control"
+                                    maxlength="6"
+                                    >
+                                </div>
+                                <div class="col-auto" *ngIf="f.pincode.touched && f.pincode.invalid">
+                                    <small> 
+                                        <span *ngIf="f.pincode.hasError('required')">Pincode is required.</span>
+                                        <span *ngIf="f.pincode.hasError('pattern')">Should be Number only.</span>
+                                        <span *ngIf="f.pincode.hasError('minlength')">Should be of 6 Digit only.</span>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-2">
+                                    <label for="address">Address</label>
+                                </div>
+                                <div class="col-auto">
+                                <input 
+                                    formControlName="address"
+                                    id="address" 
+                                    type="text" 
+                                    class="form-control">
+                                </div>
+                                <div class="col-auto" *ngIf="f.address.touched && f.address.invalid">
+                                    <small> 
+                                        <span *ngIf="f.address.hasError('required')">Address is required.</span>
+                                        <span *ngIf="f.address.hasError('minlength')">Address should be 10 character.</span>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label for="role">Roles:</label>
+                                <div *ngFor="let role of roleList">
+                                <label>
+                                    <input type="checkbox" [value]="role" (change)="onCheckboxChange($event)" />
+                                    {{role.name}}
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+                    </form>
+                </div>
+                <div *ngIf="!complainForm">
+                    <br />
+                    <p>Please click on a Complain...</p>
+                </div>
+            </div>    
         </div>
-        
     </div>
     
 </div>

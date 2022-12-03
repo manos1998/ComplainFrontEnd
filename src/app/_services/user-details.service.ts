@@ -32,8 +32,17 @@ export class UserDetailsService {
     return this.http.get(API_URL + 'mod/complains');
   }
 
+  getAllRoles(): Observable<any> {
+    return this.http.get(API_URL + 'mod/roles')
+  }
+
   getModComUserBoard(id: any): Observable<any> {
     return this.http.get(`${API_URL + 'mod/user'}/${id}`);
+  }
+
+  //
+  updateModComUserBoard(id: any, data: any): Observable<any> {
+    return this.http.put(`${API_URL + 'mod/user'}/${id}`,data);
   }
 
   getModeratorBoard(): Observable<any> {
@@ -52,6 +61,7 @@ export class UserDetailsService {
     return this.http.get<Complain>(`${API_URL + 'mod/compUpdate'}/${idC}`);
   }
 
+  //Complain
   getModUserInfoById(uId: number): Observable<any> {
     return this.http.get<Complain>(`${API_URL + 'mod/user/'}${uId}`);
   }

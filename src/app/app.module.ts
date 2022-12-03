@@ -14,6 +14,7 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 import { ServicesComponent } from './services/services.component';
 import { FaqsComponent } from './faqs/faqs.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
 import { AddUserDetailComponent } from './component/user/add-user-detail/add-user-detail.component';
@@ -30,6 +31,7 @@ import { AllWorkerComponent } from './allUsers/all-worker/all-worker.component';
 import { AllUserComponent } from './allUsers/all-user/all-user.component';
 import { UserInfoComponent } from './allUsers/user-info/user-info.component';
 import { BoardFieldworkerComponent } from './board-fieldworker/board-fieldworker.component';
+import { UserinfoupdateComponent } from './allUsers/userinfoupdate/userinfoupdate.component';
 
 @NgModule({
   declarations: [
@@ -58,11 +60,13 @@ import { BoardFieldworkerComponent } from './board-fieldworker/board-fieldworker
     AllUserComponent,
     UserInfoComponent,
     BoardFieldworkerComponent,
+    UserinfoupdateComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [httpInterceptorProviders],

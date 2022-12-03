@@ -36,8 +36,8 @@ const routes: Routes = [
   { path: 'admin', component: BoardAdminComponent },
   { path: 'eng', component: BoardEngineerComponent },
   { path: 'fld', component: BoardFieldworkerComponent },
-  {path:'faqs', component: FaqsComponent},
-  {path:'services', component: ServicesComponent},
+  { path: 'faqs', component: FaqsComponent},
+  { path: 'services', component: ServicesComponent},
   { path: 'addUserDetails', component: AddUserDetailComponent },
   { path: 'complains', component: ComplainsListComponent },
   { path: 'complains/:id', component: ComplainDetailsComponent },
@@ -45,11 +45,11 @@ const routes: Routes = [
   { path: 'coomplain', component: BoardcomlpainComponent},
   { path: 'mod/compUpdate/:id', component: AddComplEmpComponent},
   { path: 'eng/compUpdate/:id', component: AddComplFldComponent},
-  {path: 'allEngineer', component: AllEngineerComponent},
-  {path: 'allWorker', component: AllWorkerComponent},
-  {path: 'allUser', component: AllUserComponent},
-  {path: 'userInfo/:id', component: UserInfoComponent},
-  {path: '**', component:PageNotFoundComponentComponent },
+  { path: 'allEngineer', component: AllEngineerComponent},
+  { path: 'allWorker', component: AllWorkerComponent},
+  { path: 'allUser', component: AllUserComponent},
+  { path: 'userInfo/:id', component: UserInfoComponent},
+  { path: '**', component:PageNotFoundComponentComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
