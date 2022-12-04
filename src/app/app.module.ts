@@ -32,6 +32,7 @@ import { AllUserComponent } from './allUsers/all-user/all-user.component';
 import { UserInfoComponent } from './allUsers/user-info/user-info.component';
 import { BoardFieldworkerComponent } from './board-fieldworker/board-fieldworker.component';
 import { UserinfoupdateComponent } from './allUsers/userinfoupdate/userinfoupdate.component';
+import { TestaComponent } from './testa/testa.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { UserinfoupdateComponent } from './allUsers/userinfoupdate/userinfoupdat
     UserInfoComponent,
     BoardFieldworkerComponent,
     UserinfoupdateComponent,
+    TestaComponent,
   ],
   imports: [
     BrowserModule,

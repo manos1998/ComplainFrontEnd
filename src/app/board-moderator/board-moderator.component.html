@@ -1,9 +1,3 @@
-<!-- <ul class="list-group">
-  <li class="list-group-item" *ngFor="let complain of allComplains; let i = index">
-      {{ complain.type }} + 
-      {{ complain.details }}
-  </li>
-</ul> -->
 <div class="p-3">
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -59,9 +53,6 @@
             </caption>
             <thead>
               <tr>
-                <td scope="row">
-                  <input class="form-check-input" type="checkbox" id="flexCheckIndeterminate" >
-                </td>
                 <th scope="col">C Id.</th>
                 <th scope="col">U Id.</th>
                 <th scope="col">Pincode</th>
@@ -77,25 +68,15 @@
 
             <tbody class="table-group-divider" *ngFor="let complain of allComplains; let i = index">
               <tr>
-                <td scope="row">
-                  <!-- <input type="checkbox" [value]="complain.idC" (change)="onCheckboxChange($event)" /> -->
-                  <input class="form-check-input" type="checkbox" value="false" id="flexCheckChecked">
+                <td scope="row" class="rounded-3" style="font-weight: bold">{{complain.idC}}
                 </td>
-                <td scope="row" style="font-weight: bold">{{complain.idC}}
-                </td>
-                <td>
-                  <button (click)="getUser(complain.uId)">{{complain.uId}}</button>
+                <td> 
+                  <button (click)="getUser(complain.uId)" type="button" class="btn btn-outline-info" [routerLink]="['../userInfo/',complain.uId]">{{complain.uId}}</button>
                 </td>
                 <td>{{complain.pincode}}
                 </td>
                 <td>
-                  <select class="form-select rounded-pill" aria-label="Default select example" [id]="complain.status" [name]="complain.status"
-                    style="max-width: 126px;">
-                    <option selected>{{complain.status}}</option>
-                    <option value="WIP">WIP</option>
-                    <option value="ELEVATED">ELEVATED</option>
-                    <option value="RESOLVED">RESOLVED</option>
-                  </select>
+                  <div class="btn btn-outline-secondary">{{complain.status}}</div>
                 </td>
                 <td> <small> {{complain.type}} <br>
                     {{complain.createdOn}}</small>
@@ -112,21 +93,23 @@
                 </td> -->
                 <td>
                   <div *ngIf="complain.workers.length > 0; else elseWorker">
-                    <div *ngFor="let workers of complain.workers; let i = index">
-                      <div class="d-flex">
-                        <div class="flex-shrink-0">
-                          <img src="https://tse3.mm.bing.net/th?id=OIP.2i5UaEHaQM3PYAYXQyM1AAAAAA&pid=Api&P=0" alt="..."
-                            height="50px" class="rounded-circle" type="button"
-                            data-bs-toggle="modal" data-bs-target="#exampleModal" [routerLink]="['../userInfo/',workers.id]">
-                        </div>
-                        <div class="flex-grow-1 ms-1">
-                          <div class="ms-2 me-auto">
-                            <div class="fw-bold">Engineer </div>
-                            <i class="bi bi-clock"></i> ID-{{workers.id}}
+                    <div *ngFor="let workers of complain.workers.slice(1).reverse(); let i = index">
+                        <div class="d-flex btn btn-outline-secondary">
+                          <div class="flex-shrink-0">
+                            <img src="https://tse3.mm.bing.net/th?id=OIP.2i5UaEHaQM3PYAYXQyM1AAAAAA&pid=Api&P=0" alt="..."
+                              height="50px" [routerLink]="['../userInfo/',workers.id]">
+                          </div>
+                          <div class="flex-grow-1 ms-1">
+                            <div class="me-auto" style="width: 40px; ">
+                              <i class="bi bi-clock"></i> ID-{{workers.id}}
+                                <small>
+                                <small class="fw-bold "  *ngFor="let roles of workers.roles; let i = index">
+                                  {{roles.name.slice(5)}}
+                                </small>
+                                </small>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      
                     </div>
                   </div>
                   <ng-template #elseWorker>

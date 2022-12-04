@@ -6,28 +6,26 @@
 
     <thead>
         <tr>
-            <td scope="row">
-                <input class="form-check-input" type="checkbox" id="flexCheckIndeterminate">
-            </td>
             <th scope="col">U Id.</th>
+            <th scope="col">Username</th>
             <th scope="col">Pincode</th>
             <th scope="col">Email</th>
             <th scope="col">Firstname</th>
             <th scope="col">Lastname</th>
             <th scope="col">Phone</th>
             <th scope="col">Address</th>
-            <th scope="col">Complains</th>
+            <th scope="col">Roles</th>
 
         </tr>
     </thead>
     <!-- ````````````````````````````````````````````````````````````````````````````````````````````````````````````` -->
     <tbody class="table-group-divider" *ngFor="let engineer of allEngineer; let i = index">
-        <tr>
-            <td scope="row" style="font-weight: bold">{{engineer.uid}}
-            </td>
-            <td>{{engineer.pincode}}
+        <tr (dblclick)="info()" [routerLink]="['../userInfo/',engineer.id]">
+            <td scope="row" style="font-weight: bold">E. {{engineer.id}}
             </td>
             <td>{{engineer.username}}
+            </td>
+            <td>{{engineer.pincode}}
             </td>
             <td>{{engineer.email}}
             </td>
@@ -35,8 +33,14 @@
             </td>
             <td>{{engineer.lastname}}
             </td>
-
+            <td>{{engineer.phone}}
+            </td>
+            <td>{{engineer.address}}
+            </td>
             <td>
+                <small class="fw-bold "  *ngFor="let roles of engineer.roles; let i = index">
+                    {{roles.name.slice(5)}},
+                </small>
                 <!-- <a class="btn btn-primary" [routerLink]="['compUpdate/', complain.idC]">Edit</a> -->
                 <!-- <button type="button" class="btn btn-outline-success" (click)="updateDetails(complain, complain.idC)" >Submit</button> -->
             </td>

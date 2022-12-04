@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" style="text-align: center;">
     <div class="submit-form">
         <div *ngIf="!submitted">
-            <div class="form-floating mb-3">
-                Raise Complain
+            <div class="form-floating mb-3 mt-3">
+                <h5>Raise Complain</h5> 
             </div>
             <div class="form-floating mb-3">
                 <select class="form-select" id="floatingSelect" required [(ngModel)]="complain.type">
@@ -16,7 +16,7 @@
             </div>
             <div class="form-floating mb-3">
                 <textarea type="text" class="form-control" id="details" required [(ngModel)]="complain.details" name="details"
-                    placeholder="Problem Details"></textarea>
+                    placeholder="Problem Details" style="height: 100px"></textarea>
                 <label for="details">Problem Details</label>
             </div>
             <div class="row align-items-start">
@@ -43,7 +43,7 @@
                 <input type="text" class="form-control" id="floatingInput" placeholder="address" [(ngModel)]="userContent.address">
                 <label for="floatingInput">Address</label>
             </div>
-            <div class="form-floating mb-3">
+            <div class="form-floating mb-3 align-middle">
                 <button (click)="saveComplain()" class="btn btn-success">Submit</button>
             </div>
         </div>

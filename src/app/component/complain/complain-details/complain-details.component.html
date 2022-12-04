@@ -1,22 +1,23 @@
 <div *ngIf="viewMode; else editable">
     <div *ngIf="currentComplain.idC">
         <h4>Complain Detail</h4>
-        {{currentComplain.idC}}
-        <div>
-            <label><strong>Type:</strong></label> {{ currentComplain.type }}
-        </div>
-        <div>
-            <label><strong>Description:</strong></label>
-            {{ currentComplain.details }}
-        </div>
-        <div>
-            <label><strong>Active:</strong></label>
-            {{ currentComplain.active ? "Active" : "Done"}} - {{ currentComplain.status}}
-        </div>
-        <div>
-        <a class="text-center" routerLink="{{ currentComplain.idC }}" [hidden]="currentComplain.active">
-            Feedback
-        </a>
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4" style="margin-top: 30px;">
+                <img src="../../assets/all/complainlist.png" class="img-fluid rounded-start" alt="..." height="200px">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h4 class="card-title">Complain No. {{currentComplain.idC}} </h4>
+                  <h5 class="card-text">{{ currentComplain.type }}</h5>
+                  <small> {{ currentComplain.details }}</small>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+                <div class="card-footer bg-transparent border-success" [hidden]="currentComplain.active">
+                    Provide <a class="text-center" routerLink="{{ currentComplain.idC }}" [hidden]="currentComplain.active">Feedback</a>
+                </div>
+              </div>
+            </div>
         </div>
     </div>
 

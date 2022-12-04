@@ -1,6 +1,6 @@
 <table id="infoTable" class="table caption-top table-hover">
   <caption style="text-align: center;">
-    <h5>List of Complains</h5>
+    <h5>List of Complains </h5>
   </caption>
 
   <thead>
@@ -30,7 +30,7 @@
       <td scope="row" style="font-weight: bold">{{complain.idC}}
       </td>
       <td>
-        <button (click)="getUser(complain.uId)">
+        <button (click)="getUser(complain.uId)" [routerLink]="['../userInfo/',complain.uId]">
           {{complain.uId}}
         </button>
       </td>

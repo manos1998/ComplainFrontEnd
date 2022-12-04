@@ -1,3 +1,4 @@
+import { TestaComponent } from './testa/testa.component';
 import { Complain } from './models/complain.model';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -49,8 +50,9 @@ const routes: Routes = [
   { path: 'allWorker', component: AllWorkerComponent},
   { path: 'allUser', component: AllUserComponent},
   { path: 'userInfo/:id', component: UserInfoComponent},
+  { path: 'testa', component:TestaComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component:PageNotFoundComponentComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({

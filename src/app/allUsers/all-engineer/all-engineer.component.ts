@@ -32,7 +32,10 @@ export class AllEngineerComponent {
         }
       }
     })
+  }
 
+  info() {
+    console.log("Hello Stark");
   }
 
 }
