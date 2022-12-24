@@ -33,6 +33,9 @@ import { UserInfoComponent } from './allUsers/user-info/user-info.component';
 import { BoardFieldworkerComponent } from './board-fieldworker/board-fieldworker.component';
 import { UserinfoupdateComponent } from './allUsers/userinfoupdate/userinfoupdate.component';
 import { TestaComponent } from './testa/testa.component';
+import { ComplainInfoComponent } from './allUsers/complain-info/complain-info.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,10 @@ import { TestaComponent } from './testa/testa.component';
     BoardFieldworkerComponent,
     UserinfoupdateComponent,
     TestaComponent,
-  ],
+    ComplainInfoComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

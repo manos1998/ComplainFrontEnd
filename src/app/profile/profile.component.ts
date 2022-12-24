@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../models/user.model';
 import { StorageService } from '../_services/storage.service';
 import { UserDetailsService } from '../_services/user-details.service';
 
@@ -10,11 +11,31 @@ import { UserDetailsService } from '../_services/user-details.service';
 export class ProfileComponent implements OnInit {
   currentUser: any;
 
+  viewMode:boolean = false;
   userContent: any;
 
   content?: string;
-
   message = '';
+
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+
+  viewModeChange(){
+    this.viewMode = !this.viewMode;
+  }
+
+  submitted = false;
+
+  form: User = {
+    id: 0,
+    email: '',
+    firstname: '',
+    lastname: '',
+    pincode: '',
+    address: '',
+  }
+
 
   constructor(private userService: UserDetailsService, private storageService: StorageService) { }
 
@@ -41,6 +62,7 @@ export class ProfileComponent implements OnInit {
     this.userService.getUser(this.storageService.getUser().id).subscribe({
       next: data => {
         this.userContent = data;
+        this.form = data;
       },
       error: err => {
         if (err.error) {
@@ -56,10 +78,29 @@ export class ProfileComponent implements OnInit {
       }
     })
   }
-  updateTutorial(): void {
-    this.message = '';
+  // updateTutorial(): void {
+  //   this.message = '';
 
-    this.userService.update(this.currentUser.id, this.userContent)
+  //   this.userService.update(this.currentUser.id, this.userContent)
+  //     .subscribe({
+  //       next: (res) => {
+  //         console.log(res);
+  //         this.message = res.message ? res.message : 'This tutorial was updated successfully!';
+  //       },
+  //       error: (e) => console.error(e)
+  //     });
+  // }
+  saveUser():void {
+    const data = {
+      firstname: this.form.firstname,
+      lastname: this.form.lastname,
+      phone: this.form.phone,
+      pincode: this.form.pincode,
+      address: this.form.address,
+    }
+    console.log(data);
+    this.message = '';
+    this.userService.update(this.currentUser.id, data)
       .subscribe({
         next: (res) => {
           console.log(res);

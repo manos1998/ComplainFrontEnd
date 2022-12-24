@@ -26,6 +26,9 @@ import { AllUserComponent } from './allUsers/all-user/all-user.component';
 import { AllWorkerComponent } from './allUsers/all-worker/all-worker.component';
 import { UserInfoComponent } from './allUsers/user-info/user-info.component';
 import { BoardFieldworkerComponent } from './board-fieldworker/board-fieldworker.component';
+import { ComplainInfoComponent } from './allUsers/complain-info/complain-info.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -39,6 +42,8 @@ const routes: Routes = [
   { path: 'fld', component: BoardFieldworkerComponent },
   { path: 'faqs', component: FaqsComponent},
   { path: 'services', component: ServicesComponent},
+  { path: 'forgetPass', component: ForgotPasswordComponent },
+  { path: 'api/auth/reset_password/:token', component: ResetPasswordComponent },
   { path: 'addUserDetails', component: AddUserDetailComponent },
   { path: 'complains', component: ComplainsListComponent },
   { path: 'complains/:id', component: ComplainDetailsComponent },
@@ -50,6 +55,7 @@ const routes: Routes = [
   { path: 'allWorker', component: AllWorkerComponent},
   { path: 'allUser', component: AllUserComponent},
   { path: 'userInfo/:id', component: UserInfoComponent},
+  { path: 'complainInfo/:id', component: ComplainInfoComponent},
   { path: 'testa', component:TestaComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component:PageNotFoundComponentComponent },

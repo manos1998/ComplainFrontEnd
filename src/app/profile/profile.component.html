@@ -1,86 +1,148 @@
 <div class="container" *ngIf="currentUser; else loggedOut">
-  <header class="jumbotron">
-    <h3>
-      <strong>{{ currentUser.username }}</strong> Profile
-    </h3>
-  </header>
-  
-  <p>
-    <strong>Email:</strong>
-    {{ currentUser.email }}
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    {{ currentUser.roles }}
-  </p>
-
-  <p>
-    <strong>Name:</strong>
-    {{ userContent.firstname }} {{ userContent.lastname }}
-  </p>
-  <p>
-    <strong>Phone:</strong>
-    {{ userContent.phone }}
-  </p>
-  <p>
-    <strong>Address:</strong>
-    {{ userContent.address }}
-  </p>
-  <p>
-    <strong>Pincode:</strong>
-    {{ userContent.pincode }}
-  </p>
-
-  <!-- Button trigger modal -->
-<button type="button" class="btn btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Update Details
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Profile</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="userContent.firstname">
-          <label for="floatingInput">FirstName</label>
-        </div>        
-        <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="userContent.lastname" />
-          <label for="floatingInput">LastName</label>
+  <div class="container mt-5" *ngIf="currentUser; else loggedOut">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-5">
+        <div class="card p-3 py-4">
+          <div class="text-center">
+            <img src="https://i.imgur.com/bDLhJiP.jpg" width="100" class="rounded-circle">
+          </div>
+          <div class="text-center mt-3">
+            <span class="bg-secondary p-1 px-4 rounded text-white">{{form.username}}</span>
+            <h5 class="mt-2 mb-0"> {{form.firstname}} - {{form.lastname}}</h5>
+            <div class="px-4 mt-1">
+              <p class="fonts">
+                Phone : {{form.phone}}<br>
+                Email : {{form.email}}</p>
+            </div>
+            <div class="social-list">
+              Address : {{form.address}} - Pincode - {{form.pincode}}
+            </div>
+            <div class="buttons">
+              <button class="btn btn-outline-primary px-4" (click)="viewModeChange()">Update</button>
+            </div>
+          </div>
         </div>
-        <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="userContent.phone" /> 
-          <label for="floatingInput">Phone Number</label>
-        </div>        
-        <div class="form-floating mb-3">
-          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" [(ngModel)]="userContent.address" ></textarea>
-          <label for="floatingTextarea">Address</label>
+      </div>  
+      <div class="col-md-7">
+        <div *ngIf="viewMode">
+          <div class="submit-form">
+            <div *ngIf="!submitted">
+              <form name="form" (ngSubmit)="f.form.valid && saveUser()" #f="ngForm" novalidate>
+                <div class="border border-secondary rounded p-3">
+                  <div class="row g-3 align-items-center m-2">
+                    <div class="col-sm-2">
+                      <label for="firstname" class="col-form-label">Firstname</label>
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="text" id="firstname" name="firstname" class="form-control" required
+                        aria-describedby="firstname" [(ngModel)]="form.firstname"
+                        #firstname="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstname.errors && f.touched }"
+                        >
+                    </div>
+                    <div class="col-sm-5">
+                      <span *ngIf="firstname.errors && f.submitted" class="form-text link-danger">
+                        First Name is required!
+                      </span>
+                      <br>
+                      <span *ngIf="firstname.errors && firstname.touched" class="form-text link-warning">
+                        Firstname Number cannot be null.
+                      </span>
+                    </div>
+                  </div>
+    
+                  <div class="row g-3 align-items-center m-2">
+                    <div class="col-sm-2">
+                      <label for="lastname" class="col-form-label">Lastname</label>
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="lastname" id="lastname" name="lastname" class="form-control" required 
+                      aria-describedby="lastname" [(ngModel)]="form.lastname"
+                        #lastname="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastname.errors && f.touched }">
+                    </div>
+                    <div class="col-sm-5">
+                      <span *ngIf="lastname.errors && f.submitted" class="form-text link-danger">
+                        Must be 8-20 characters long.
+                      </span>
+                      <br>
+                      <span *ngIf="lastname.errors && lastname.touched" class="form-text link-warning">
+                        Lastname Number cannot be null.
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row g-3 align-items-center m-2">
+                    <div class="col-sm-2">
+                      <label for="phone" class="col-form-label">Phone</label>
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="phone" id="phone" class="form-control" name="phone" required 
+                      aria-describedby="phone" [(ngModel)]="form.phone"
+                      #phone="ngModel" [ngClass]="{ 'is-invalid': f.submitted && phone.errors && f.touched }">
+                    </div>
+                     <div class="col-sm-5">
+                      <span *ngIf="phone.errors && f.submitted" class="form-text link-danger">
+                        Must be 8-20 characters long.
+                      </span>
+                      <br>
+                      <span *ngIf="phone.errors && phone.touched" class="form-text link-warning">
+                        Phone Number cannot be null.
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row g-3 align-items-center m-2">
+                    <div class="col-sm-2">
+                      <label for="pincode" class="col-form-label">Pincode</label>
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="pincode" id="pincode" class="form-control" name="pincode" required 
+                      aria-describedby="pincode" [(ngModel)]="form.pincode"
+                      #pincode="ngModel" [ngClass]="{ 'is-invalid': f.submitted && pincode.errors && f.touched }" >
+                    </div>
+                    <div class="col-sm-5">
+                      <span *ngIf="pincode.errors && f.submitted" class="form-text link-danger">
+                        Must be 8-20 characters long.
+                      </span>
+                      <br>
+                      <span *ngIf="pincode.errors && pincode.touched" class="form-text link-warning">
+                        Pincode Number cannot be null.
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row g-3 align-items-center m-2">
+                    <div class="col-sm-2">
+                      <label for="address" class="col-form-label">Address</label>
+                    </div>
+                    <div class="col-sm-5">
+                      <textarea type="address" id="address" class="form-control" name="address" required 
+                      aria-describedby="address" [(ngModel)]="form.address" rows="3"
+                      #address="ngModel" [ngClass]="{ 'is-invalid': f.submitted && address.errors && f.touched }" >
+                      </textarea>
+                    </div>
+                    <div class="col-sm-5">
+                      <span *ngIf="address.errors && f.submitted" class="form-text link-danger">
+                        Must be 8-20 characters long.
+                      </span>
+                      <br>
+                      <span *ngIf="address.errors && address.touched" class="form-text link-warning">
+                        Address Number cannot be null.
+                      </span>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-success m-2">Submit</button>
+                  </div>
+                </div>
+                <!-- <pre>{{this.result | json}}</pre> -->
+                <div *ngIf="submitted">
+                  <h4>Tutorial was submitted successfully!</h4>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="userContent.pincode" />
-          <label for="floatingInput">Pincode</label>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="updateTutorial()" >Save changes</button>
-        <!-- <button
-        type="submit"
-        class="badge badge-success mb-2"
-        ></button> -->
       </div>
     </div>
   </div>
 </div>
-</div>
-
-
 <ng-template #loggedOut>
   Please login.
 </ng-template>

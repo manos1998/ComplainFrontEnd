@@ -1,31 +1,31 @@
 <div class="container">
-    <legend>Edit Item</legend>
-    <form>
-      
+  <legend>Assign Field Wroker</legend>
+  <form>      
       <div class="mb-3">
         <div class="card text-center">
           <div class="card-header">
-            Complain Details 
+            Edit Complain Details 
           </div>
           <div class="card-body">
             <h5 class="card-title">Complain Id : {{complainForm.idC}} </h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <p class="card-text"> <span>Type {{complainForm.type}}</span></p>
+            <p>Staus: {{complainForm.status}}</p> 
+            <a type="button" (click)="update()" class="btn btn-primary">Update</a>
           </div>
-          <div class="card-footer text-muted">
-            2 days ago
-          </div>
+          <!-- <div class="card-footer text-muted">
+            {{complainForm}}
+          </div> -->
         </div>
-        <label for="txtName" class="form-label">Complain Id</label> {{complainForm.idC}} <br>
+        <!-- <label for="txtName" class="form-label">Complain Id</label> {{complainForm.idC}} <br>
         <label for="txtName" class="form-label">Complain Type</label> {{complainForm.type}} <br>
         <label for="txtName" class="form-label">Complain Status</label> {{complainForm.status}} <br>
-        <button type="button" (click)="update()" class="btn btn-primary">Update</button>
+        <button type="button" (click)="update()" class="btn btn-primary">Update</button> -->
       </div>
       <div class="p-3">
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="m-1 p-2 border border-info border-light rounded">
-              <div class="clearfix">
+              <!-- <div class="clearfix">
                 <div class="d-flex float-start">
                   <div class="me-2">
                     <button type="button" class="btn btn-outline-danger"><i class="bi bi-file-pdf-fill"></i> Export
@@ -48,7 +48,7 @@
                     </ul>
                   </div>
                 </div>
-              </div>
+              </div> -->
       
               <!-- ```````````````````````````````````````````````````````````````````````````````````````````````` -->
       

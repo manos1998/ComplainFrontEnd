@@ -1,5 +1,3 @@
-import { Complain } from './../models/complain.model';
-import { User } from './../models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../_services/storage.service';
 import { UserDetailsService } from '../_services/user-details.service';
@@ -103,6 +101,11 @@ export class BoardModeratorComponent implements OnInit {
     this.currentWorkers = workers;
     console.log(this.currentWorkers);    
   }
+
+  info(id: number) {
+    console.log("Hello Stark" + id);
+  }
+
 
   // onCheckboxChange(e) {
     

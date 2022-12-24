@@ -1,7 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { FormArray, FormControl, FormGroup, MaxLengthValidator, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Roles } from 'src/app/models/roles.model';
+import { Complain } from 'src/app/models/complain.model';
 import { User } from 'src/app/models/user.model';
 import { UserDetailsService } from 'src/app/_services/user-details.service';
 
@@ -11,23 +10,47 @@ import { UserDetailsService } from 'src/app/_services/user-details.service';
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent {
-  // editCategoryForm: any;
-  // complainRole:any;
-  viewMode:boolean = !true;
+  viewMode:boolean = false;
+  viewModeComplain:boolean = false;
+
+  currentRole: any;
+  currentComplain: Complain = {};
+  currentIndex = -1;
+
+  assignComplain: any;
+
+  currentId:number = 0;
 
   roleList:any = [];
 
+  userComplain: any;
+
   usersRole: any;
 
-  complainForm: User = {
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+
+  user: User = {
+    id: 0,
+    email: '',
+    password: '',
     firstname: '',
     lastname: '',
-    phone: '',
     pincode: '',
     address: '',
-    roles: [Roles],
-  };
+  }
   
+  submitted = false;
+
+  list = [
+    {
+      id: 6,
+      name: 'User',
+      checked: true,
+    }
+  ]
+
   message = '';
 
   constructor(private route: ActivatedRoute,
@@ -35,61 +58,62 @@ export class UserInfoComponent {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((param) => {
-      var id = Number(param.get('id'));
-      this.getById(id);
+      this.currentId = Number(param.get('id'));
+      this.getById(this.currentId);
     });
     this.userService.getAllRoles().subscribe((data) => {
-      this.roleList = data;
+      this.list = data;
+    })
+    this.userService.getModUserAllCom(this.currentId).subscribe((data) => {
+      this.assignComplain = data;
     })
   }
   getById(uId: number) {
     this.userService.getModUserInfoById(uId).subscribe((data) => {
-      this.complainForm = data;
-      console.log( "Get Data First time" + data);
+      console.log(data);
+      this.user = data;
       this.usersRole = data.roles;
+      this.userComplain = data.userComplain;
     });
+  }
+
+  setActiveComplain(complain: Complain, index: number): void {
+    this.currentComplain = complain;
+    console.log(complain);
+    this.currentIndex = index;
+  }
+
+  viewModeComplainChange() {
+    this.viewModeComplain = !this.viewModeComplain;
   }
 
   viewModeChange(){
     this.viewMode = !this.viewMode;
   }
 
-  form = new FormGroup({
-    firstname: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    lastname: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    phone: new FormControl('', [Validators.required,Validators.pattern("[0-9]{10}") ,Validators.minLength(10)]),
-    pincode: new FormControl('', [Validators.required,Validators.pattern("[0-9]{1,6}"), Validators.minLength(6)]),
-    address: new FormControl('', [Validators.required,Validators.minLength(10),Validators.maxLength(120)]),
-    roles: new FormArray([],Validators.required)
-  });
-  
-  onCheckboxChange(e: any) {
-    const roles: FormArray = this.form.get('roles') as FormArray;
-  
-    if (e.target.checked) {
-      roles.push(new FormControl(e.target.value));
-    } else {
-       const index = roles.controls.findIndex(x => x.value === e.target.value);
-       roles.removeAt(index);
-    }
+  get result() {
+    return this.list?.filter(item => item.checked);
   }
 
-  get f(){
-    return this.form.controls;
-  }
-  
-  submit(){
-    console.log(this.form.value);
-    this.userService.updateModComUserBoard(this.complainForm.id,this.form.value)
+  saveUser():void {
+
+    const data = {
+      firstname: this.user.firstname,
+      lastname: this.user.lastname,
+      phone: this.user.phone,
+      pincode: this.user.pincode,
+      address: this.user.address,
+      roles: this.result
+    }
+    console.log(data);
+    this.userService.updateModComUserBoard(this.user.id,data)
     .subscribe({
       next: (res) => {
-        console.log("Got data second time" + res);
         this.viewMode = !this.viewMode;
-        this.getById(this.complainForm.id);
+        this.getById(this.user.id);
         this.message = res.message ? res.message : 'The status was updated successfully!';
       },
       error: (e) => console.error(e)
     });
   }
-
 }

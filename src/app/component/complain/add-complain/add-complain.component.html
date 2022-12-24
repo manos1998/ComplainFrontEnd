@@ -21,27 +21,27 @@
             </div>
             <div class="row align-items-start">
                 <div class="form-floating mb-3 col">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="firstname" [(ngModel)]="userContent.firstname"/>
-                    <label for="floatingInput">First Name</label>
+                    <input type="text" class="form-control" id="firstname" placeholder="firstname" [(ngModel)]="userContent.firstname"/>
+                    <label for="firstname">First Name</label>
                 </div>
                 <div class="form-floating mb-3 col">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="lastName" [(ngModel)]="userContent.lastname" >
-                    <label for="floatingInput">Last Name</label>
+                    <input type="text" class="form-control" id="lastname" placeholder="lastname" [(ngModel)]="userContent.lastname" >
+                    <label for="lastname">Last Name</label>
                 </div>
             </div>
             <div class="row align-items-start">
                 <div class="form-floating mb-3 col">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="phone" [(ngModel)]="userContent.phone"/>
-                    <label for="floatingInput">Phone Number</label>
+                    <input type="text" class="form-control" id="phone" placeholder="phone" [(ngModel)]="userContent.phone"/>
+                    <label for="phone">Phone Number</label>
                 </div>
                 <div class="form-floating mb-3 col">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="pincode" [(ngModel)]="userContent.pincode">
-                    <label for="floatingInput">Pincode</label>
+                    <input type="text" class="form-control" id="pincode" placeholder="pincode" [(ngModel)]="userContent.pincode">
+                    <label for="pincode">Pincode</label>
                 </div>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="address" [(ngModel)]="userContent.address">
-                <label for="floatingInput">Address</label>
+                <input type="text" class="form-control" id="address" placeholder="address" [(ngModel)]="userContent.address">
+                <label for="address">Address</label>
             </div>
             <div class="form-floating mb-3 align-middle">
                 <button (click)="saveComplain()" class="btn btn-success">Submit</button>

@@ -1,156 +1,188 @@
 <div class="container mt-5">
-    
-    <div class="row d-flex justify-content-center">
-        
-        <div class="col-md-7">
-            
-            <div class="card p-3 py-4">
-                
-                <div class="text-center">
-                    <img src="https://i.imgur.com/bDLhJiP.jpg" width="100" class="rounded-circle">
-                </div>
-                
-                <div class="text-center mt-3">
-                    <span class="bg-secondary p-1 px-4 rounded text-white">{{complainForm.username}}</span>
-                    <h5 class="mt-2 mb-0" > {{complainForm.firstname}} - {{complainForm.lastname}}</h5>
-                    <span  *ngFor="let role of usersRole; let i = index"> {{role.name}}</span>
-                    <div class="px-4 mt-1">
-                        <p class="fonts"> 
-                            Phone : {{complainForm.phone}}<br>
-                            Email : {{complainForm.email}}</p>
-                    </div>
-                     <div class="social-list">
-                        Address : {{complainForm.address}} - Pincode - {{complainForm.pincode}}
-                     </div>
-                    <div class="buttons">
-                        <button class="btn btn-outline-primary px-4" (click)="viewModeChange()">Update</button>
-                    </div>
-                </div>
-            </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-5">
+      <div class="card p-3 py-4">
+        <div class="text-center">
+          <img src="https://i.imgur.com/bDLhJiP.jpg" width="100" class="rounded-circle">
         </div>
-        <div class="col-md-5">
-            <div *ngIf="viewMode">
-                <div *ngIf="complainForm.id">
-                    <h4>Update User Info</h4>
-                    <form [formGroup]="form" (ngSubmit)="submit()">
-                        <div class="mb-3">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-2">
-                                    <label for="firstname">FirstName</label>
-                                </div>
-                                <div class="col-auto">
-                                <input 
-                                    formControlName="firstname"
-                                    id="firstname" 
-                                    type="text" 
-                                    class="form-control">
-                                </div>
-                                <div class="col-auto" *ngIf="f.firstname.touched && f.firstname.invalid">
-                                    <small> <span *ngIf="f.firstname.hasError('required')">Firstname is required.</span>
-                                    <span *ngIf="f.firstname.hasError('minlength')">Firstname should be 3 character.</span></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-2">
-                                    <label for="lastname">LastName</label>
-                                </div>
-                                <div class="col-auto">
-                                <input 
-                                    formControlName="lastname"
-                                    id="lastname" 
-                                    type="text" 
-                                    class="form-control">
-                                </div>
-                                <div class="col-auto" *ngIf="f.lastname.touched && f.lastname.invalid">
-                                    <small> <span *ngIf="f.lastname.hasError('required')">Lastname is required.</span>
-                                    <span *ngIf="f.lastname.hasError('minlength')">Lastname should be 3 character.</span></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-2">
-                                    <label for="phone">Phone</label>
-                                </div>
-                                <div class="col-auto">
-                                <input 
-                                    formControlName="phone"
-                                    id="phone"
-                                    type="text"
-                                    class="form-control"
-                                    maxlength="10">
-                                </div>
-                                <div class="col-auto" *ngIf="f.phone.touched && f.phone.invalid">
-                                    <small> <span *ngIf="f.phone.hasError('required')">Phone is required.</span>
-                                    <span *ngIf="f.phone.hasError('pattern')">Mobile Number should be 10 Digit Only.</span></small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-2">
-                                    <label for="pincode">Pincode</label>
-                                </div>
-                                <div class="col-auto">
-                                <input 
-                                    formControlName="pincode"
-                                    id="pincode" 
-                                    type="text" 
-                                    class="form-control"
-                                    maxlength="6"
-                                    >
-                                </div>
-                                <div class="col-auto" *ngIf="f.pincode.touched && f.pincode.invalid">
-                                    <small> 
-                                        <span *ngIf="f.pincode.hasError('required')">Pincode is required.</span>
-                                        <span *ngIf="f.pincode.hasError('pattern')">Should be Number only.</span>
-                                        <span *ngIf="f.pincode.hasError('minlength')">Should be of 6 Digit only.</span>
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-2">
-                                    <label for="address">Address</label>
-                                </div>
-                                <div class="col-auto">
-                                <input 
-                                    formControlName="address"
-                                    id="address" 
-                                    type="text" 
-                                    class="form-control">
-                                </div>
-                                <div class="col-auto" *ngIf="f.address.touched && f.address.invalid">
-                                    <small> 
-                                        <span *ngIf="f.address.hasError('required')">Address is required.</span>
-                                        <span *ngIf="f.address.hasError('minlength')">Address should be 10 character.</span>
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="form-group">
-                                <label for="role">Roles:</label>
-                                <div *ngFor="let role of roleList">
-                                <label>
-                                    <input type="checkbox" [value]="role" (change)="onCheckboxChange($event)" />
-                                    {{role.name}}
-                                </label>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
-                    </form>
-                </div>
-                <div *ngIf="!complainForm">
-                    <br />
-                    <p>Please click on a Complain...</p>
-                </div>
-            </div>    
+        <div class="text-center mt-3">
+          <span class="bg-secondary p-1 px-4 rounded text-white">{{user.username}}</span>
+          <h5 class="mt-2 mb-0"> {{user.firstname}} - {{user.lastname}}</h5>
+          <span *ngFor="let role of usersRole; let i = index"> {{role.name}}</span>
+          <div class="px-4 mt-1">
+            <p class="fonts">
+              Phone : {{user.phone}}<br>
+              Email : {{user.email}}</p>
+          </div>
+          <div class="social-list">
+            Address : {{user.address}} - Pincode - {{user.pincode}}
+          </div>
+          <div class="buttons">
+            <button class="btn btn-outline-primary px-4" (click)="viewModeChange()">Update</button>
+          </div>
         </div>
+      </div>
+      <div>
+        <div class="text-center">
+          <h5 *ngIf="userComplain?.length > 0">User Complains</h5>
+          <div>
+            <ol class="list-group mt-2" *ngFor="let complain of userComplain; let i = index" 
+            [class.active]="i == currentIndex" (click)="setActiveComplain(complain, i)" (click)="viewModeComplainChange()">
+              <li class="list-group-item d-flex justify-content-between align-items-start">
+                {{complain.idC}}
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">{{complain.createdOn}}</div>
+                  {{complain.type}}
+                </div>
+                <span class="badge bg-primary rounded-pill">{{complain.status}}</span>
+              </li>
+            </ol>
+          </div>
+          <h5 *ngIf="assignComplain?.length > 0">Worker Complains</h5>
+          <div>
+            <ol class="list-group mt-2" *ngFor="let complain of assignComplain; let i = index" 
+              [class.active]="i == currentIndex" (click)="setActiveComplain(complain, i)" (click)="viewModeComplainChange()">
+              <li class="list-group-item d-flex justify-content-between align-items-start" >
+                {{complain.idC}}
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">{{complain.createdOn}}</div>
+                  {{complain.type}}
+                </div>
+                <span class="badge bg-primary rounded-pill">{{complain.status}}</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
     </div>
-    
-</div>
+    <div class="col-md-7">
+      <div *ngIf="viewMode">
+        <div class="submit-form">
+          <div *ngIf="!submitted"> 
+            <div class="border border-secondary rounded p-3">
+              <div class="row g-3 align-items-center m-2">
+                <div class="col-sm-2">
+                  <label for="firstName" class="col-form-label">Firstname</label>
+                </div>
+                <div class="col-sm-5">
+                  <input type="text" id="firstName" name="firstName" class="form-control" required
+                    aria-describedby="firstName" [(ngModel)]="user.firstname">
+                </div>
+                <div class="col-sm-5">
+                  <span id="firstName" class="form-text">
+                    Must be 8-20 characters long.
+                  </span>
+                </div>
+              </div>
+              <div class="row g-3 align-items-center m-2">
+                <div class="col-sm-2">
+                  <label for="lastName" class="col-form-label">Lastname</label>
+                </div>
+                <div class="col-sm-5">
+                  <input type="lastName" id="lastName" class="form-control" required aria-describedby="lastName"
+                    [(ngModel)]="user.lastname">
+                </div>
+                <div class="col-sm-5">
+                  <span id="lastName" class="form-text">
+                    Must be 8-20 characters long.
+                  </span>
+                </div>
+              </div>
+              <div class="row g-3 align-items-center m-2">
+                <div class="col-sm-2">
+                  <label for="phone" class="col-form-label">Phone</label>
+                </div>
+                <div class="col-sm-5">
+                  <input type="phone" id="phone" class="form-control" required aria-describedby="phone"
+                    [(ngModel)]="user.phone">
+                </div>
+                <div class="col-sm-5">
+                  <span id="email" class="form-text">
+                    Must be 8-20 characters long.
+                  </span>
+                </div>
+              </div>
+              <div class="row g-3 align-items-center m-2">
+                <div class="col-sm-2">
+                  <label for="pincode" class="col-form-label">Pincode</label>
+                </div>
+                <div class="col-sm-5">
+                  <input type="pincode" id="pincode" class="form-control" required aria-describedby="pincode"
+                    [(ngModel)]="user.pincode">
+                </div>
+                <div class="col-sm-5">
+                  <span id="email" class="form-text">
+                    Must be 8-20 characters long.
+                  </span>
+                </div>
+              </div>
+              <div class="row g-3 align-items-center m-2">
+                <div class="col-sm-2">
+                  <label for="address" class="col-form-label">Address</label>
+                </div>
+                <div class="col-sm-5">
+                  <textarea type="address" id="address" class="form-control" required aria-describedby="address"
+                    [(ngModel)]="user.address" rows="3"></textarea>
+                </div>
+                <div class="col-sm-5">
+                  <span id="email" class="form-text">
+                    Must be 8-20 characters long.
+                  </span>
+                </div>
+              </div>
+              <div class="row m-2">
+                <div class="col-sm-2">
+                  <label for="roles" class="col-form-label">Roles</label>
+                </div>
+                <div class="col-auto">
+                  <div *ngFor="let item of list">
+                    <input type="checkbox" class="form-check-input" [(ngModel)]="item.checked"> {{item.name}}
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-success m-2" (click)="saveUser()">Submit</button>
+              </div>
+            </div>
+            <pre>{{this.result | json}}</pre>
+            <div *ngIf="submitted">
+              <h4>Tutorial was submitted successfully!</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="viewModeChange">
+        <div *ngIf="currentComplain.idC">
+          <h4>Complain Detail</h4>
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4" style="margin-top: 30px;">
+                <img src="../../assets/all/complainlist.png" class="img-fluid rounded-start" alt="..." height="200px">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h4 class="card-title">Complain No. {{currentComplain.idC}} </h4>
+                  <h5 class="card-text">{{ currentComplain.type }}</h5>
+                  <small> {{ currentComplain.details }}</small>
+                  <p class="card-text"><small class="text-muted"> {{currentComplain.createdOn}} </small></p>
+                </div>
+                <div class="card-footer bg-transparent border-success" *ngIf="currentComplain.feedback">
+                  Feedback : {{currentComplain.feedback}}
+                </div>
+                <div class="card-footer bg-transparent border-success">
+                  <div *ngFor="let worker of currentComplain.workers">
+                    <a [routerLink]="['../../userInfo/',worker.id]"> {{worker.id}} - {{worker.username}} - <small *ngFor="let roles of worker.roles">{{roles.name}} ,</small> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="!currentComplain">
+          <br />
+          <p>Please click on a Complain...</p>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -37,6 +37,32 @@ export class AuthService {
     );
   }
 
+  forgetPassword(email: string):Observable<any> {
+    return this.http.post(
+      AUTH_API + 'forgot_password',{
+        email
+      },
+      httpOptions
+    );
+  }
+
+  resetPassword(token: string, email: string, password: string ):Observable<any> {
+    console.log("Token " + token);
+    console.log("Email " + email);
+    console.log("Password " + password);
+    
+    return this.http.post(
+      AUTH_API + 'reset_password',
+      {
+        token,
+        email,
+        password,
+      },
+      httpOptions
+    );
+    // return this.http.post(`${AUTH_API + 'reset_password'}`,password);
+  }
+
   logout(): Observable<any> {
     return this.http.post(AUTH_API + 'signout', { }, httpOptions);
   }

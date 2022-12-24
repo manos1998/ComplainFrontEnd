@@ -15,12 +15,11 @@
             <th scope="col">Phone</th>
             <th scope="col">Address</th>
             <th scope="col">Roles</th>
-
         </tr>
     </thead>
     <!-- ````````````````````````````````````````````````````````````````````````````````````````````````````````````` -->
     <tbody class="table-group-divider" *ngFor="let engineer of allEngineer; let i = index">
-        <tr (dblclick)="info()" [routerLink]="['../userInfo/',engineer.id]">
+        <tr (click)="info()" [routerLink]="['../userInfo/',engineer.id]">
             <td scope="row" style="font-weight: bold">E. {{engineer.id}}
             </td>
             <td>{{engineer.username}}

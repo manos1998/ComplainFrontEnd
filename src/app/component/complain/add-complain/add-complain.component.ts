@@ -60,7 +60,6 @@ export class AddComplainComponent implements OnInit {
       active: this.complain.active,
       status: this.complain.status,
     };
-    console.log(data);
     this.complainService.createComplainByUser(this.storageService.getUser().id,data)
       .subscribe({
         next: (res) => {

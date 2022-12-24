@@ -37,6 +37,10 @@ export class ComplainDetailsComponent implements OnInit {
         this.getComplain(this.route.snapshot.params["id"]);
       }
     }
+
+    savefeedback(): void {
+      console.log(this.currentComplain.feedback + this.currentComplain.idC);
+    }
   
     getComplain(id: string): void {
       this.complainService.get(id)

@@ -2,7 +2,7 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <div class="m-1 p-2 border border-info border-light rounded">
-        <div class="clearfix">
+        <!-- <div class="clearfix">
           <div class="d-flex float-start">
             <div class="dropdown me-2">
               <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,7 +35,7 @@
               </ul>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- ```````````````````````````````````````````````````````````````````````````````````````````````` -->
 
@@ -49,7 +49,7 @@
 
           <table id="infoTable" class="table caption-top table-hover">
             <caption style="text-align: center;">
-                <h4>Total 578 Complain</h4>
+                <h4>Complains</h4>
             </caption>
             <thead>
               <tr>
@@ -67,7 +67,7 @@
             <!-- ````````````````````````````````````````````````````````````````````````````````````````````````````````````` -->
 
             <tbody class="table-group-divider" *ngFor="let complain of allComplains; let i = index">
-              <tr>
+              <tr (click)="info(complain.idC)" [routerLink]="['../complainInfo/',complain.idC]">
                 <td scope="row" class="rounded-3" style="font-weight: bold">{{complain.idC}}
                 </td>
                 <td> 
@@ -93,20 +93,24 @@
                 </td> -->
                 <td>
                   <div *ngIf="complain.workers.length > 0; else elseWorker">
-                    <div *ngFor="let workers of complain.workers.slice(1).reverse(); let i = index">
-                        <div class="d-flex btn btn-outline-secondary">
+                    <div *ngFor="let workers of complain.workers.slice(-1).reverse() let i = index">
+                        <div class="d-flex btn btn-outline-secondary" style="max-height: 60px;">
                           <div class="flex-shrink-0">
                             <img src="https://tse3.mm.bing.net/th?id=OIP.2i5UaEHaQM3PYAYXQyM1AAAAAA&pid=Api&P=0" alt="..."
-                              height="50px" [routerLink]="['../userInfo/',workers.id]">
+                              height="38px" [routerLink]="['../userInfo/',workers.id]">
                           </div>
                           <div class="flex-grow-1 ms-1">
-                            <div class="me-auto" style="width: 40px; ">
-                              <i class="bi bi-clock"></i> ID-{{workers.id}}
+                            <div class="me-auto" style="width: 52px;">
+                              <div>
+                                ID-{{workers.id}}
+                              </div>
+                              <div>
                                 <small>
-                                <small class="fw-bold "  *ngFor="let roles of workers.roles; let i = index">
-                                  {{roles.name.slice(5)}}
+                                  <small class="fw-bold "  *ngFor="let roles of workers.roles; let i = index">
+                                    {{roles.name.slice(5, 8)}},
+                                  </small>
                                 </small>
-                                </small>
+                              </div>
                             </div>
                           </div>
                         </div>

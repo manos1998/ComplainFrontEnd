@@ -1,0 +1,30 @@
+<div>
+  <div>
+    <div class="position-absolute top-50 start-50 translate-middle">
+      <h4>Complain Detail {{currentComplain.idC}}</h4>
+      <div class="card mb-3" style="width: 700px;">
+        <div class="row g-0">
+          <div class="col-md-4" style="margin-top: 30px;">
+            <img src="../../assets/all/complainlist.png" class="img-fluid rounded-start" alt="..." height="200px">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h4 class="card-title">Complain No. {{currentComplain.idC}} </h4>
+              <h5 class="card-text">{{ currentComplain.type }}</h5>
+              <small> {{ currentComplain.details }}</small>
+              <p class="card-text"><small class="text-muted"> {{currentComplain.createdOn}} </small></p>
+            </div>
+            <div class="card-footer bg-transparent border-success" *ngIf="currentComplain.feedback">
+              Feedback : {{currentComplain.feedback}}
+            </div>
+            <div class="card-footer bg-transparent border-success">
+              <div *ngFor="let worker of currentComplain.workers">
+                <a [routerLink]="['../../userInfo/',worker.id]"> {{worker.id}} - {{worker.username}} - <small *ngFor="let roles of worker.roles">{{roles.name}} ,</small> </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
