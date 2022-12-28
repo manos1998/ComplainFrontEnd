@@ -1,0 +1,139 @@
+<div class="col-md-12">
+  <div *ngIf="isSuccessful === true" [routerLink]="['../users/createNew']"></div>
+    <div class="card card-container mt-3 position-fixed top-50 start-50 translate-middle" style="max-width: 700px;">
+      <div class="main-block" style="margin-top: 5px;">
+        <form
+          *ngIf="!isSuccessful" 
+          name="form" 
+          (ngSubmit)="f.form.valid && saveUser()" 
+          #f="ngForm" 
+          novalidate
+          >
+          <h1 style="text-align: center;">Update User</h1>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-2">
+                            <input placeholder="UserName" type="text" class="form-control" name="username" [(ngModel)]="form.username"
+                            required #username="ngModel" [ngClass]="{ 'is-invalid': f.submitted && username.errors }" />
+                            <label for="username">User Name</label>
+                            <div *ngIf="username.errors && f.submitted" class="form-text link-warning">
+                            Username is required!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-2">
+                            <input placeholder="Email" type="email" class="form-control" name="email" [(ngModel)]="form.email"
+                            required #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
+                            <label for="email">Email</label>
+                            <div *ngIf="email.errors && f.submitted" class="form-text link-warning">
+                                Email is required!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                            <div class="form-floating mb-2">
+                                <input placeholder="First Name" type="text" class="form-control" name="firstname" [(ngModel)]="form.firstname"
+                                required #firstname="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstname.errors }" />
+                                <label for="floatingInput">First Name</label>
+                                <div *ngIf="firstname.errors && f.submitted" class="form-text link-warning">
+                                First Name is required!
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-2">
+                            <input placeholder="Last Name" type="text" class="form-control" name="lastname" [(ngModel)]="form.lastname"
+                            required #lastname="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastname.errors }" />
+                            <label for="floatingInput">Last Name</label>
+                                <div *ngIf="lastname.errors && f.submitted" class="form-text link-warning">
+                                Last Name is required!
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                            <div class="form-floating mb-2">
+                                <input placeholder="Phone" type="text" class="form-control" name="phone" [(ngModel)]="form.phone"
+                                required #phone="ngModel" [ngClass]="{ 'is-invalid': f.submitted && phone.errors }" />
+                                <label for="floatingInput">Phone Number</label>
+                                <div *ngIf="phone.errors && f.submitted" class="form-text link-warning">
+                                Phone Number is required!
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-2">
+                            <input placeholder="Pincode" type="text" class="form-control" name="pincode" [(ngModel)]="form.pincode"
+                            required #pincode="ngModel" [ngClass]="{ 'is-invalid': f.submitted && pincode.errors }" />
+                            <label for="floatingInput">Pincode or Zip Address</label>
+                                <div *ngIf="pincode.errors && f.submitted" class="form-text link-warning">
+                                Pincode is required!
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-2">
+                            <div class="row m-2">
+                                <div class="col-sm-2">
+                                  <label for="roles" class="col-form-label">Roles</label>
+                                </div>
+                                <div class="col-auto">
+                                  <div *ngFor="let item of list">
+                                    <input type="checkbox" name="roles" class="form-check-input" [(ngModel)]="item.checked"> {{item.name}}
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check m-2">
+                            <label class="form-check-label" for="enable">
+                              Enable User
+                            </label>
+                            <input type="checkbox" name="enable" class="form-check-input" value={{form.enable}} [(ngModel)]="form.enable"
+                            #enable="ngModel">
+                          </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-3 m-3">
+                            <textarea class="form-control" placeholder="Please enter your Address" name="address" id="address" style="height: 100px"
+                            [(ngModel)]="form.address" required #address="ngModel" [ngClass]="{ 'is-invalid': f.submitted && address.errors }"></textarea>
+                            <label for="floatingTextarea2">Address</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-success m-2">Update</button>
+            <button type="button" class="btn btn-primary m-3" [routerLink]="['../../admin']">Cancel</button>
+          </div>
+          <div class="form-group">
+            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+              Signup failed!<br />{{ errorMessage }}
+            </div>
+          </div>
+        </form>
+        <div class="alert alert-success" *ngIf="isSuccessful">
+          Your registration is successful!
+        </div>
+        <!-- <pre>{{this.result | json}}</pre> -->
+      </div>
+    </div>
+  </div>

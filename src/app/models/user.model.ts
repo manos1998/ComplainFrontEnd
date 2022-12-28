@@ -8,6 +8,7 @@ export class User {
     phone?: string;
     pincode?: string;
     address?: string;
+    enable?: boolean = false;
     roles?: any;
 }
 

@@ -29,6 +29,8 @@ import { BoardFieldworkerComponent } from './board-fieldworker/board-fieldworker
 import { ComplainInfoComponent } from './allUsers/complain-info/complain-info.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { UpdateUserComponent } from './board-admin/update-user/update-user.component';
+import { CreateUserComponent } from './board-admin/create-user/create-user.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -57,6 +59,8 @@ const routes: Routes = [
   { path: 'userInfo/:id', component: UserInfoComponent},
   { path: 'complainInfo/:id', component: ComplainInfoComponent},
   { path: 'testa', component:TestaComponent },
+  { path: 'users/userUpdate/:id', component: UpdateUserComponent },
+  { path: 'users/createNew', component: CreateUserComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component:PageNotFoundComponentComponent },
 ];

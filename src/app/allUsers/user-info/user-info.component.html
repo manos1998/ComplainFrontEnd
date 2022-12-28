@@ -130,7 +130,7 @@
                   </span>
                 </div>
               </div>
-              <div class="row m-2">
+              <!-- <div class="row m-2">
                 <div class="col-sm-2">
                   <label for="roles" class="col-form-label">Roles</label>
                 </div>
@@ -139,12 +139,12 @@
                     <input type="checkbox" class="form-check-input" [(ngModel)]="item.checked"> {{item.name}}
                   </div>
                 </div>
-              </div>
+              </div> -->
               <div class="text-center">
                 <button type="submit" class="btn btn-success m-2" (click)="saveUser()">Submit</button>
               </div>
             </div>
-            <pre>{{this.result | json}}</pre>
+            <!-- <pre>{{this.result | json}}</pre> -->
             <div *ngIf="submitted">
               <h4>Tutorial was submitted successfully!</h4>
             </div>

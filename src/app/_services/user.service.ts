@@ -30,4 +30,29 @@ export class UserService {
     return this.http.get(API_URL + 'fld', { responseType: 'text' });
   }
 
+  getAdminUsersBoard(): Observable<any> {
+    return this.http.get(API_URL + 'admin/users');
+  }
+
+  deleteUser(uId: number): Observable<any> {
+    return this.http.delete(`${API_URL + 'admin/user/deleteUser/'}${uId}`)
+  }
+
+  updateAdminUpdate(uId: number,user: any): Observable<any> {
+    // return this.http.put(`${API_URL + 'admin/user/deleteUser/'}`,user);
+    return this.http.put(`${API_URL + 'admin/user/updateUser/'}${uId}`,user)
+  }
+
+  createUserBoard(user: any): Observable<any> {
+    return this.http.post(`${API_URL + 'admin/user/createUser'}`, user)
+  }
+
+  getUserInfoById(uId: number): Observable<any> {
+    return this.http.get(`${API_URL + 'admin/user/'}${uId}`);
+  }
+
+  getUsersRoles(): Observable<any> {
+    return this.http.get(API_URL + 'admin/roles');
+  }
+
 }

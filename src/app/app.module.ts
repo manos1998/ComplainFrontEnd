@@ -36,6 +36,8 @@ import { TestaComponent } from './testa/testa.component';
 import { ComplainInfoComponent } from './allUsers/complain-info/complain-info.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { CreateUserComponent } from './board-admin/create-user/create-user.component';
+import { UpdateUserComponent } from './board-admin/update-user/update-user.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     TestaComponent,
     ComplainInfoComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    CreateUserComponent,
+    UpdateUserComponent
     ],
   imports: [
     BrowserModule,

@@ -9,6 +9,10 @@ import { UserService } from '../_services/user.service';
 export class BoardAdminComponent implements OnInit {
   content?: string;
 
+  users?: any;
+
+  uId?: any;
+
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
@@ -29,5 +33,31 @@ export class BoardAdminComponent implements OnInit {
         }
       }
     });
+    this.userService.getAdminUsersBoard().subscribe({
+      next: data => {
+        this.users = data;
+        console.log(data);
+      },
+      error: err => {console.log(err)
+        if (err.error) {
+          this.users = JSON.parse(err.error).message;
+        } else {
+          this.users = "Error with status: " + err.status;
+        }
+      }
+    });
   }
+  deleteUser(uId: any) {
+    this.userService.deleteUser(uId).subscribe({
+      next: data => {
+        console.log(data);
+        this.reloadPage();
+      }
+    })
+  }
+
+  reloadPage(){
+    window.location.reload()
+  }
+  
 }
