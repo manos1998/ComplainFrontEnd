@@ -128,11 +128,11 @@
                     </div>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-success m-2">Submit</button>
+                    <button type="submit" class="btn btn-success m-2" (click)="viewModeChange()">Submit</button>
                   </div>
                 </div>
                 <!-- <pre>{{this.result | json}}</pre> -->
-                <div *ngIf="submitted">
+                <div *ngIf="isSuccessful">
                   <h4>Tutorial was submitted successfully!</h4>
                 </div>
               </form>

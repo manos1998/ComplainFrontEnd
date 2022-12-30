@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="users else loggedOut">
   <div style="text-align: center;">
     <h2 style="margin-top: 5px;">Manage Users | <a class="btn btn-primary" [routerLink]="['../users/createNew']">Create User</a></h2>
   </div>
@@ -50,3 +50,8 @@
     </table>
   </div>
 </div>
+<ng-template #loggedOut>
+  <div style="text-align: center;">
+    <h3>Please Login</h3>
+  </div>
+</ng-template>
